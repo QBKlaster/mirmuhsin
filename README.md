@@ -137,3 +137,33 @@ Nima qilishingiz kerak:
 | `admin-apps-script/Admin.html` | Admin panel koʻrinishi |
 
 Saytdagi doimiy matnlar (davlatlar, lavozimlar, sessiya tartibi, qoidalar) `index.html` pastidagi `<script>` ichida: `STATES`, `POSITIONS`, `STEPS`, `SECRETARIAT` va `C = { en: …, uz: … }`. Qoʻshtirnoq ichidagi matnni oʻzgartiring, qoʻshtirnoq va vergullarga tegmang.
+
+---
+
+## Nizom versiyasiga yangilash (2026-oktabr)
+
+Sayt "Model of OTS – QarDU" Nizomiga moslandi: 5 ta aʼzo davlat, 9 bosqich, baholash mezonlari (100 ball), ishtirok qoidalari va QarDU talabalari uchun yangi ariza shakli.
+
+**Admin panelni yangilash (majburiy):**
+
+1. Apps Script'da `Code.gs` va `Admin.html` ichidagini shu papkadagi yangi fayllar bilan almashtiring, saqlang.
+2. Muharrirda istalgan funksiyani (masalan `adminLoad`) bir marta **Run** qiling — Google Drive'ga ruxsat soʻraydi (asoschi rasmi Drive'ga saqlanadi). **Allow** bosing.
+3. **Deploy → Manage deployments** — *ikkala* deployment uchun ham: ✏️ → Version: **New version** → **Deploy**. Manzillar oʻzgarmaydi.
+
+**Yangi imkoniyatlar:**
+
+- **Asoschi** boʻlimi — rasm yuklash (JPG/PNG/WEBP, 4 MB gacha; Drive'dagi "Model of OTS — sayt rasmlari" papkasiga tushadi) va asoschi haqidagi matnni ikki tilda tahrirlash. Xatboshilar bitta boʻsh qator bilan ajratiladi.
+- **Arizalar** — toʻliq jadval: F.I.Sh., fakultet, bosqich, kurs, telefon, pochta, davlat, rol, jamoa, motivatsiya, til, holat. Qidiruv, holat/davlat/bosqich boʻyicha filtr, statistika va **Excel'ga yuklab olish** (CSV, Excel toʻgʻri ochadi).
+- Google jadvalidagi `Applications` varagʻiga `Faculty`, `Level`, `Course`, `Team` ustunlari avtomatik qoʻshiladi; eski arizalar oʻz joyida qoladi.
+
+**Ijtimoiy tarmoqlar va rollar (5-oktabr qoʻshimchasi):**
+
+- Saytning har bir sahifasida, menyu ostida Telegram va Instagram tugmalari turadi; ular bosh sahifada, aloqa sahifasida, ariza shaklida va pastki qismda ham bor.
+- Ariza shaklida Telegram va Instagram username majburiy. Obuna boʻlmaganlarning arizasi koʻrib chiqilmasligi shaklda va qoidalarda yozilgan.
+- Ishtirokchi rol tanlamaydi. Admin paneldagi **Arizalar** jadvalida "Biriktirilgan rol" ustunidan rolni oʻzingiz tanlaysiz; qabul xatida shu rol yoziladi.
+- Jadvaldagi Telegram/Instagram username bosilsa, oʻsha odamning profili ochiladi — obunani tekshirish uchun qulay.
+- "Umumiy maʼlumot"da **Telegram kanal havolasi** maydonida eski kanal (`t.me/Mirmuhsinxonn`) yozilgan boʻlsa, uni `https://t.me/Model_of_OTS` ga almashtiring yoki boʻsh qoldiring.
+
+**Muhim tartib:** avval Apps Script'ni (Code.gs, Admin.html) yangilab deploy qiling, keyin `index.html` ni GitHub'ga joylang. Aks holda eski backend Telegram/Instagram username'larini saqlamaydi.
+
+**Eslatma:** "Umumiy maʼlumot" boʻlimida *Delegatsiyalar* yoki *Bosh sahifa matni* maydoniga avval eski matn ("8 davlat, 64 oʻrin" kabi) yozilgan boʻlsa, uni oʻchiring yoki yangilang — aks holda u saytdagi yangi matnni almashtiradi.

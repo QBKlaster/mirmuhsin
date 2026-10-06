@@ -301,6 +301,80 @@ footer h4{color:#fff;font-size:.95rem;margin:0 0 10px}
 footer .fine{margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);
   font-size:.85rem;font-family:var(--sans)}
 
+/* ---------- admin ---------- */
+body.is-admin footer,body.is-admin .socialbar{display:none}
+.adm{padding:30px 0 80px;min-height:80vh}
+.adm .wrap{width:min(100% - 32px,1440px)}
+.adm-login{max-width:420px;margin:30px auto;padding:30px}
+.adm-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.adm-top h2{margin:0 auto 0 0;font-size:1.7rem}
+.adm-top .who{font-family:var(--sans);font-size:.86rem;color:var(--txt-soft)}
+.adm-tabs{display:flex;gap:2px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-bottom:20px}
+.adm-tabs button{font-family:var(--sans);font-size:.92rem;background:none;border:0;border-bottom:2px solid transparent;
+  padding:10px 14px;cursor:pointer;color:var(--txt-soft)}
+.adm-tabs button.on{color:var(--teal);border-bottom-color:var(--gold);font-weight:600}
+.adm .card{margin-bottom:16px;padding:22px}
+.adm .card h3{font-size:1.1rem;margin-bottom:12px}
+.adm .arow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.adm label{display:block;margin-bottom:5px}
+.adm .field label{margin:0}
+.adm input,.adm select,.adm textarea{width:100%;font-family:var(--sans);font-size:.92rem;padding:9px 10px}
+.adm input[type=checkbox]{width:18px;height:18px}
+.adm .check{font-family:var(--sans);font-size:.88rem}
+.adm textarea{min-height:110px}
+.adm .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.adm .msg{display:none}.adm .msg.on{display:block}
+.abtn{display:inline-block;font-family:var(--sans);font-size:.86rem;font-weight:600;padding:9px 16px;border-radius:2px;
+  border:1px solid var(--teal);background:var(--teal);color:#fff;cursor:pointer;line-height:1.3}
+.abtn:hover{text-decoration:none;filter:brightness(1.08)}
+.abtn.gold{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.abtn.ghost{background:#fff;color:var(--teal);border-color:var(--line)}
+.abtn.danger{background:#A33827;border-color:#A33827}
+.abtn.sm{padding:5px 10px;font-size:.78rem}
+.abtn:disabled{opacity:.5;cursor:default}
+.atoast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;pointer-events:none;z-index:200;
+  background:var(--ink);color:#fff;font-family:var(--sans);font-size:.9rem;padding:12px 18px;border-left:3px solid var(--gold);
+  box-shadow:0 10px 30px rgba(0,0,0,.25);transition:.25s;max-width:min(92vw,560px)}
+.atoast.on{opacity:1;transform:translate(-50%,0)}
+.atoast.bad{border-left-color:#E0644F}
+.astats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.astats div{background:#fff;border:1px solid var(--line);padding:10px 16px;min-width:118px}
+.astats b{display:block;font-family:var(--sans);font-size:1.4rem;color:var(--teal)}
+.astats span{font-family:var(--sans);font-size:.76rem;color:var(--txt-soft)}
+.afilters{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px}
+.tscroll{overflow-x:auto}
+table.apps{width:100%;min-width:1750px;border-collapse:collapse;font-family:var(--sans)}
+table.apps th,table.apps td{text-align:left;padding:8px 9px;border-bottom:1px solid var(--line);vertical-align:top;font-size:.84rem}
+table.apps th{color:var(--txt-soft);font-weight:600;font-size:.76rem;white-space:nowrap;background:#fff}
+table.apps tr:hover td{background:#F6F9F9}
+table.apps td.nw{white-space:nowrap}
+table.apps select{padding:5px 6px;font-size:.8rem;min-width:120px}
+table.apps details summary{cursor:pointer;color:var(--teal)}
+.pre{white-space:pre-wrap;max-width:320px}
+.st-Accepted{color:#1F6B36;font-weight:600}.st-Rejected{color:#A33827;font-weight:600}
+.aitem{display:flex;gap:14px;align-items:flex-start;border-bottom:1px solid var(--line);padding:12px 0;flex-wrap:wrap}
+.aitem:last-child{border-bottom:0}
+.aitem .g{flex:1;min-width:200px}
+.aitem h4{margin:0 0 3px;font-size:1rem}
+.aitem small{color:var(--txt-soft);font-family:var(--sans);font-size:.82rem}
+.pill{font-family:var(--sans);font-size:.72rem;font-weight:500;padding:2px 8px;border-radius:20px;background:#E5EFEF;color:var(--txt-soft)}
+.pill.live{background:#DEF0E2;color:#1F6B36}
+.photo-row{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start}
+.photo-box{width:170px;aspect-ratio:4/5;border:1px dashed var(--line);display:grid;place-items:center;text-align:center;
+  padding:10px;background:#F6F9F9;overflow:hidden}
+.photo-box img{width:100%;height:100%;object-fit:cover}
+.pwrules{list-style:none;padding:0;margin:10px 0 0;font-family:var(--sans);font-size:.8rem;color:var(--txt-soft);columns:2;column-gap:16px}
+.pwrules li{padding:2px 0 2px 20px;position:relative;break-inside:avoid}
+.pwrules li::before{content:"○";position:absolute;left:2px;color:#A9B8BC}
+.pwrules li.ok{color:#1F6B36}
+.pwrules li.ok::before{content:"✓";color:#1F6B36;font-weight:700}
+.muted{color:var(--txt-soft);font-size:.88rem;font-family:var(--sans)}
+footer .fine{display:flex;justify-content:space-between;align-items:center;gap:16px}
+footer a.corner{display:inline-flex;padding:4px;opacity:.18;color:#9FBDC2;transition:opacity .2s}
+footer a.corner:hover{opacity:.7}
+footer a.corner svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2}
+@media (max-width:800px){.adm .arow,.afilters{grid-template-columns:1fr}.pwrules{columns:1}.adm-top h2{width:100%}}
+
 @media (max-width:1300px){
   nav.main{display:none;position:absolute;top:66px;left:0;right:0;background:var(--ink);
     flex-direction:column;gap:0;padding:8px 20px 18px;border-bottom:1px solid var(--line-dark);z-index:70}
@@ -739,7 +813,8 @@ async function loadContent(){
     SITE.news = (d.news||[]).slice().sort((a,b)=>String(b.date).localeCompare(String(a.date)));
     applySettings();
     contentLoaded = true;
-    renderNav(); renderFooter(); route();
+    renderNav(); renderFooter();
+    if(currentView()!=="admin") route();
   }catch(e){ /* saytning oʻz matnlari bilan ishlayveradi */ }
 }
 
@@ -1141,6 +1216,8 @@ const views = {
     ${head(t().gal.h,t().gal.lede)}
     <section class="tight"><div class="wrap"><div class="empty"><img src="logo.webp" alt="">${esc(t().gal.empty)}</div></div></section>`,
 
+  admin: () => `<section class="adm"><div class="wrap" id="adm"></div></section>`,
+
   contact: () => `
     ${head(t().cont.h,t().cont.lede)}
     <section class="tight"><div class="wrap" style="max-width:760px">
@@ -1191,14 +1268,18 @@ function renderFooter(){
       <a href="#/gallery">${esc(nav.find(n=>n[0]==="gallery")[1])}</a>
       <a href="#/contact">${esc(nav.find(n=>n[0]==="contact")[1])}</a>
       <a href="mailto:${esc(CONTACT.email)}">${esc(CONTACT.email)}</a></div>`;
-  document.getElementById("footFine").textContent =
-    "© " + new Date().getFullYear() + " " + f.rights;
+  document.getElementById("footFine").innerHTML =
+    `<span>© ${new Date().getFullYear()} ${esc(f.rights)}</span>`+
+    `<a class="corner" href="#/admin" aria-label="Admin" title=""><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></a>`;
 }
 
+function currentView(){ const k=location.hash.replace("#/","")||"home"; return views[k]?k:"home"; }
 function route(){
   const key = (location.hash.replace("#/","") || "home");
   const view = views[key] ? key : "home";
   app.innerHTML = `<div class="view on">${views[view]()}</div>`;
+  document.body.classList.toggle("is-admin", view==="admin");
+  if(view==="admin") admRender();
   document.querySelectorAll("#nav a").forEach(a=>a.classList.toggle("on", a.dataset.k===view));
   document.getElementById("nav").classList.remove("open");
   if(view==="register") wireForm();
@@ -1252,6 +1333,436 @@ function wireForm(){
     }catch(e){
       show(esc(t().reg.err)+`<a href="mailto:${CONTACT.email}">${CONTACT.email}</a>`, true);
     }finally{ btn.disabled=false; btn.textContent=old; }
+  });
+}
+
+
+/* ============================================================
+   6) ADMIN PANEL  (#/admin) — login/parol bilan
+   Xavfsizlik serverda (Apps Script) tekshiriladi: bu kodni koʻrgan
+   odam login va parolsiz hech narsa qila olmaydi.
+   ============================================================ */
+const ADM = { token:"", user:null, d:null, tab:"apps", f:{q:"",st:"",c:"",lv:""}, editEv:null, editNews:null, resetFor:"" };
+try{ ADM.token = sessionStorage.getItem("mots-adm") || ""; }catch(e){}
+function admToken(t){ ADM.token=t||""; try{ t ? sessionStorage.setItem("mots-adm",t) : sessionStorage.removeItem("mots-adm"); }catch(e){} }
+const $a = id => document.getElementById(id);
+
+async function api(action, payload){
+  if(!APPS_SCRIPT_URL) throw new Error("Server manzili qoʻyilmagan (index.html → APPS_SCRIPT_URL).");
+  let r, d;
+  try{
+    r = await fetch(APPS_SCRIPT_URL,{method:"POST",body:JSON.stringify(Object.assign({action,token:ADM.token},payload||{}))});
+  }catch(e){ throw new Error("Server bilan aloqa yoʻq. Internetni tekshiring."); }
+  try{ d = await r.json(); }catch(e){ throw new Error("Serverdan notoʻgʻri javob keldi. Apps Script deploy qilinganini tekshiring."); }
+  if(!d || !d.ok){
+    if(d && d.auth){ admToken(""); ADM.user=null; ADM.d=null; setTimeout(admRender,0); }
+    throw new Error((d && d.error) || "Xatolik yuz berdi.");
+  }
+  return d;
+}
+
+/* ---------- parol va login qoidalari ---------- */
+const LOGIN_RE = /^[A-Za-z][A-Za-z0-9_.-]{3,31}$/;
+const PW_RULES = [
+  ["len","Kamida 8 ta belgi", p=>p.length>=8 && p.length<=64],
+  ["up","Kamida 1 ta katta harf (A–Z)", p=>/[A-Z]/.test(p)],
+  ["low","Kamida 1 ta kichik harf (a–z)", p=>/[a-z]/.test(p)],
+  ["dig","Kamida 1 ta raqam (0–9)", p=>/[0-9]/.test(p)],
+  ["sym","Kamida 1 ta maxsus belgi (_ ! @ # $ % …)", p=>/[^A-Za-z0-9\s]/.test(p)],
+  ["sp","Boʻsh joy (probel) yoʻq", p=>p.length>0 && !/\s/.test(p)]
+];
+function pwNoLogin(p,login){ return p.length>0 && !(login && p.toLowerCase().includes(String(login).toLowerCase())); }
+function pwOk(p,login){ return PW_RULES.every(r=>r[2](p)) && pwNoLogin(p,login); }
+function pwRulesHtml(id){
+  return `<ul class="pwrules" id="${id}">${PW_RULES.map(r=>`<li data-r="${r[0]}">${esc(r[1])}</li>`).join("")}<li data-r="nolog">Parol ichida login boʻlmasin</li></ul>`;
+}
+function wirePw(inputId, rulesId, loginFn){
+  const inp=$a(inputId), ul=$a(rulesId);
+  const upd=()=>{
+    const p=inp.value, lg=loginFn?loginFn():"";
+    PW_RULES.forEach(r=>ul.querySelector(`[data-r="${r[0]}"]`).classList.toggle("ok",r[2](p)));
+    ul.querySelector('[data-r="nolog"]').classList.toggle("ok",pwNoLogin(p,lg));
+  };
+  inp.addEventListener("input",upd); upd();
+  return upd;
+}
+function eyeToggle(btnId, inputIds){
+  $a(btnId).addEventListener("change",e=>inputIds.forEach(i=>{ $a(i).type = e.target.checked ? "text" : "password"; }));
+}
+
+/* ---------- yordamchilar ---------- */
+function admSay(text,bad){
+  let t=$a("admToast");
+  if(!t){ t=document.createElement("div"); t.id="admToast"; document.body.appendChild(t); }
+  t.textContent=text; t.className="atoast on"+(bad?" bad":"");
+  clearTimeout(admSay.h); admSay.h=setTimeout(()=>{ t.className="atoast"; }, bad?6000:3500);
+}
+function admBusy(on){ document.querySelectorAll("#adm .abtn").forEach(b=>{ b.disabled=on; }); }
+async function admRun(fn, okText){
+  admBusy(true);
+  try{ const r = await fn(); if(okText) admSay(okText); return r; }
+  catch(e){ admSay(e.message,true); }
+  finally{ admBusy(false); }
+}
+const STATE_UZ = {"Uzbekistan":"Oʻzbekiston","Kazakhstan":"Qozogʻiston","Kyrgyzstan":"Qirgʻiziston","Türkiye":"Turkiya","Azerbaijan":"Ozarbayjon"};
+const ROLE_UZ = {"Assigned by committee":"— belgilanmagan —","Head of State / President":"Davlat rahbari","Foreign Affairs":"Tashqi ishlar",
+  "Economy & Finance":"Iqtisodiyot va moliya","Trade & Investment":"Savdo va investitsiya","Transport":"Transport","Energy":"Energetika",
+  "Digital Development":"Raqamli rivojlanish","Education, Culture & Tourism":"Taʼlim, madaniyat va turizm"};
+const uzState = v => STATE_UZ[v] || v;
+const uzRole = v => ROLE_UZ[v] || v;
+const dt = v => String(v||"").replace("T"," ");
+
+/* ---------- asosiy chizish ---------- */
+function admRender(){
+  const root=$a("adm"); if(!root) return;
+  if(!ADM.token){ root.innerHTML=admLoginHtml(); admWireLogin(); return; }
+  if(!ADM.d){ root.innerHTML='<p class="muted" style="padding:40px 0">Yuklanmoqda…</p>'; admLoad(); return; }
+  const owner = ADM.user.role==="owner";
+  const tabs=[["apps","Arizalar"],["events","Tadbirlar"],["news","Yangiliklar"],["founder","Asoschi"],["settings","Umumiy maʼlumot"]]
+    .concat(owner?[["users","Foydalanuvchilar"]]:[]).concat([["me","Parolim"]]);
+  if(!tabs.some(t=>t[0]===ADM.tab)) ADM.tab="apps";
+  root.innerHTML = `
+    <div class="adm-top">
+      <h2>Admin panel</h2>
+      <span class="who">${esc(ADM.user.login)} · ${owner?"Bosh admin":"Admin"}</span>
+      <a class="abtn ghost" href="#/home">Saytga qaytish</a>
+      <button class="abtn ghost" id="admOut">Chiqish</button>
+    </div>
+    <div class="adm-tabs">${tabs.map(([k,v])=>`<button data-tab="${k}" class="${k===ADM.tab?"on":""}">${esc(v)}</button>`).join("")}</div>
+    <div id="admBody"></div>`;
+  root.querySelectorAll(".adm-tabs button").forEach(b=>b.addEventListener("click",()=>{ ADM.tab=b.dataset.tab; admRender(); }));
+  $a("admOut").addEventListener("click", async()=>{ try{ await api("logout"); }catch(e){} admToken(""); ADM.user=null; ADM.d=null; admRender(); });
+  ({apps:admApps,events:admEvents,news:admNews,founder:admFounder,settings:admSettings,users:admUsers,me:admMe})[ADM.tab]();
+}
+
+async function admLoad(){
+  try{
+    const d = await api("load");
+    ADM.user=d.user; ADM.d=d; admRender();
+  }catch(e){
+    const root=$a("adm"); if(!root) return;
+    if(ADM.token){
+      root.innerHTML=`<div class="adm-login card"><h3>Maʼlumotni yuklab boʻlmadi</h3><p>${esc(e.message)}</p>
+        <div class="actions"><button class="abtn" id="admRetry">Qayta urinish</button><button class="abtn ghost" id="admOut2">Chiqish</button></div></div>`;
+      $a("admRetry").addEventListener("click",admRender);
+      $a("admOut2").addEventListener("click",()=>{ admToken(""); admRender(); });
+    }
+  }
+}
+
+/* ---------- kirish ---------- */
+function admLoginHtml(){
+  return `<div class="adm-login card">
+    <img src="logo.webp" alt="" style="width:76px;margin:0 auto 10px">
+    <h2 style="text-align:center;font-size:1.5rem;margin-bottom:18px">Admin panel</h2>
+    <div class="field"><label for="alLogin">Login</label><input id="alLogin" autocomplete="username" autocapitalize="off" spellcheck="false"></div>
+    <div class="field" style="margin-top:12px"><label for="alPw">Parol</label><input id="alPw" type="password" autocomplete="current-password"></div>
+    <label class="check" style="margin-top:12px"><input type="checkbox" id="alShow"><span>Parolni koʻrsatish</span></label>
+    <div class="msg" id="alMsg" style="margin-top:12px"></div>
+    <button class="abtn" id="alGo" style="width:100%;margin-top:16px;padding:12px">Kirish</button>
+  </div>`;
+}
+function admWireLogin(){
+  eyeToggle("alShow",["alPw"]);
+  const go = async()=>{
+    const login=$a("alLogin").value.trim(), pw=$a("alPw").value, box=$a("alMsg");
+    box.className="msg";
+    if(!login || !pw){ box.textContent="Login va parolni kiriting."; box.className="msg err on"; return; }
+    const b=$a("alGo"); b.disabled=true; b.textContent="Tekshirilmoqda…";
+    try{
+      const r = await api("login",{login,password:pw});
+      admToken(r.token); ADM.user=r.user; ADM.d=null; admRender();
+    }catch(e){
+      box.textContent=e.message; box.className="msg err on";
+      b.disabled=false; b.textContent="Kirish"; $a("alPw").select();
+    }
+  };
+  $a("alGo").addEventListener("click",go);
+  ["alLogin","alPw"].forEach(id=>$a(id).addEventListener("keydown",e=>{ if(e.key==="Enter") go(); }));
+  $a("alLogin").focus();
+}
+
+/* ---------- arizalar ---------- */
+function admFiltered(){
+  const f=ADM.f, q=f.q.trim().toLowerCase();
+  return ADM.d.applications.filter(a=>{
+    if(f.st && a.status!==f.st) return false;
+    if(f.c && a.country!==f.c) return false;
+    if(f.lv && a.level!==f.lv) return false;
+    if(q){
+      const hay=[a.name,a.faculty,a.institution,a.email,a.phone,a.team,a.telegram,a.instagram,a.country,uzState(a.country),uzRole(a.position)].join(" ").toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
+    return true;
+  });
+}
+function userLink(base,u){
+  u=String(u||"").replace(/^@+/,"");
+  return u ? `<a href="${esc(base+u)}" target="_blank" rel="noopener">@${esc(u)}</a>` : '<span class="muted">—</span>';
+}
+function admApps(){
+  const all=ADM.d.applications, n=fn=>all.filter(fn).length, f=ADM.f;
+  const stats=[["Jami",all.length],["Yangi",n(a=>a.status==="New")],["Qabul qilingan",n(a=>a.status==="Accepted")],["Rad etilgan",n(a=>a.status==="Rejected")]]
+    .concat(Object.keys(STATE_UZ).map(k=>[STATE_UZ[k],n(a=>a.country===k)]));
+  const countries=[...new Set(all.map(a=>a.country).filter(Boolean))].sort();
+  $a("admBody").innerHTML=`
+    <div class="astats">${stats.map(s=>`<div><b>${s[1]}</b><span>${esc(s[0])}</span></div>`).join("")}</div>
+    <div class="card">
+      <div class="afilters">
+        <input id="afQ" placeholder="Qidirish: ism, yoʻnalish, pochta, telefon, username…" value="${esc(f.q)}">
+        <select id="afSt"><option value="">Barcha holatlar</option>${["New","Accepted","Rejected"].map(s=>`<option${f.st===s?" selected":""}>${s}</option>`).join("")}</select>
+        <select id="afC"><option value="">Barcha davlatlar</option>${countries.map(c=>`<option value="${esc(c)}"${f.c===c?" selected":""}>${esc(uzState(c))}</option>`).join("")}</select>
+        <select id="afLv"><option value="">Barcha bosqichlar</option>${["Bakalavriat","Magistratura"].map(s=>`<option${f.lv===s?" selected":""}>${s}</option>`).join("")}</select>
+      </div>
+      <div class="actions" style="margin:12px 0 14px">
+        <button class="abtn gold" id="aAcc">Qabul qilinganlarga xat yuborish</button>
+        <button class="abtn ghost" id="aRej">Rad etilganlarga xat yuborish</button>
+        <button class="abtn ghost" id="aCsv">Excelʼga yuklab olish</button>
+        ${ADM.d.sheetUrl?`<a class="abtn ghost" href="${esc(ADM.d.sheetUrl)}" target="_blank" rel="noopener">Google jadvalni ochish</a>`:""}
+      </div>
+      <div class="tscroll" id="aList"></div>
+    </div>`;
+  const draw=()=>{
+    const list=admFiltered();
+    if(!all.length){ $a("aList").innerHTML='<p class="muted">Hali ariza yoʻq.</p>'; return; }
+    if(!list.length){ $a("aList").innerHTML='<p class="muted">Filtrga mos ariza topilmadi.</p>'; return; }
+    $a("aList").innerHTML=`<p class="muted" style="margin:0 0 8px">${list.length} ta ariza koʻrsatilmoqda</p>
+      <table class="apps"><tr><th>№</th><th>Sana</th><th>F.I.Sh.</th><th>Yoʻnalish</th><th>Bosqich</th><th>Kurs</th><th>Telefon</th><th>Pochta</th>
+      <th>Telegram</th><th>Instagram</th><th>Davlat</th><th>Biriktirilgan rol</th><th>Jamoa</th><th>Motivatsiya</th><th>Til</th><th>Holat</th><th>Xat yuborilgan</th></tr>
+      ${list.map((a,i)=>`<tr>
+        <td>${i+1}</td><td class="nw">${esc(dt(a.when))}</td><td><b>${esc(a.name)}</b></td>
+        <td>${esc(a.faculty||a.institution)}</td><td>${esc(a.level)}</td><td class="nw">${esc(a.course?a.course+"-kurs":"")}</td>
+        <td class="nw"><a href="tel:${esc(String(a.phone).replace(/\s/g,""))}">${esc(a.phone)}</a></td>
+        <td><a href="mailto:${esc(a.email)}">${esc(a.email)}</a></td>
+        <td class="nw">${userLink("https://t.me/",a.telegram)}</td><td class="nw">${userLink("https://www.instagram.com/",a.instagram)}</td>
+        <td>${esc(uzState(a.country))}</td>
+        <td><select data-role="${a.row}">${Object.keys(ROLE_UZ).map(k=>`<option value="${esc(k)}"${a.position===k?" selected":""}>${esc(ROLE_UZ[k])}</option>`).join("")}${ROLE_UZ[a.position]?"":`<option selected>${esc(a.position)}</option>`}</select></td>
+        <td>${a.team?`<div class="pre">${esc(a.team)}</div>`:""}</td>
+        <td>${a.motivation?`<details><summary>Oʻqish</summary><div class="pre">${esc(a.motivation)}</div></details>`:'<span class="muted">—</span>'}</td>
+        <td>${esc(String(a.lang).toUpperCase())}</td>
+        <td><select data-status="${a.row}" class="st-${esc(a.status)}">${["New","Accepted","Rejected"].map(s=>`<option${a.status===s?" selected":""}>${s}</option>`).join("")}</select></td>
+        <td class="nw">${esc(dt(a.mailed))}</td></tr>`).join("")}</table>`;
+    $a("aList").querySelectorAll("select[data-role]").forEach(s=>s.addEventListener("change",()=>admRun(async()=>{
+      const r=await api("setRole",{row:Number(s.dataset.role),role:s.value}); ADM.d.applications=r.applications; draw();
+    },"Rol biriktirildi.")));
+    $a("aList").querySelectorAll("select[data-status]").forEach(s=>s.addEventListener("change",()=>admRun(async()=>{
+      const r=await api("setStatus",{row:Number(s.dataset.status),status:s.value}); ADM.d.applications=r.applications; admApps();
+    },"Holat yangilandi.")));
+  };
+  draw();
+  $a("afQ").addEventListener("input",e=>{ f.q=e.target.value; draw(); });
+  [["afSt","st"],["afC","c"],["afLv","lv"]].forEach(([id,k])=>$a(id).addEventListener("change",e=>{ f[k]=e.target.value; draw(); }));
+  const send=(kind,text)=>{ if(!confirm(text)) return; admRun(async()=>{
+    const r=await api("sendEmails",{kind}); ADM.d.applications=r.applications; admApps(); admSay(r.sent+" ta xat yuborildi.");
+  }); };
+  $a("aAcc").addEventListener("click",()=>send("accept","Qabul qilinganlarga xat yuborilsinmi?"));
+  $a("aRej").addEventListener("click",()=>send("reject","Rad etilganlarga xat yuborilsinmi?"));
+  $a("aCsv").addEventListener("click",()=>{
+    const rows=[["№","Sana","F.I.Sh.","Yoʻnalish","Bosqich","Kurs","Telefon","Pochta","Telegram","Instagram","Davlat","Rol","Jamoa","Motivatsiya","Til","Holat","Xat yuborilgan"]];
+    admFiltered().forEach((a,i)=>rows.push([i+1,dt(a.when),a.name,a.faculty||a.institution,a.level,a.course,a.phone,a.email,a.telegram,a.instagram,
+      uzState(a.country),uzRole(a.position),a.team,a.motivation,a.lang,a.status,dt(a.mailed)]));
+    const csv=rows.map(r=>r.map(v=>'"'+String(v==null?"":v).replace(/"/g,'""')+'"').join(";")).join("\r\n");
+    const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob(["﻿"+csv],{type:"text/csv;charset=utf-8"}));
+    a.download="model-of-ots-arizalar-"+new Date().toISOString().slice(0,10)+".csv"; a.click();
+  });
+}
+
+/* ---------- tadbirlar va yangiliklar (umumiy shakl) ---------- */
+function admCrud(cfg){
+  const items=ADM.d[cfg.key].slice().sort(cfg.sort);
+  const cur=ADM[cfg.editKey]||{published:"TRUE"};
+  $a("admBody").innerHTML=`
+    <div class="card"><h3>${esc(cur.id?cfg.editTitle:cfg.newTitle)}</h3>
+      <div class="arow">${cfg.fields.map(([k,label,type,full,ph])=>`
+        <div class="${full?"full-row":""}"><label for="cf-${k}">${esc(label)}</label>
+        ${type==="area"?`<textarea id="cf-${k}">${esc(cur[k]||"")}</textarea>`
+          :`<input id="cf-${k}" type="${type}" value="${esc(cur[k]||"")}" placeholder="${esc(ph||"")}">`}</div>`).join("")}
+        <div class="full-row"><label class="check"><input type="checkbox" id="cf-pub"${String(cur.published)==="TRUE"?" checked":""}><span>Saytda koʻrinsin</span></label></div>
+      </div>
+      <div class="actions"><button class="abtn" id="cfSave">Saqlash</button>${cur.id?'<button class="abtn ghost" id="cfCancel">Bekor qilish</button>':""}</div>
+    </div>
+    <div class="card"><h3>${esc(cfg.listTitle)}</h3>
+      ${items.length?items.map(it=>`<div class="aitem"><div class="g">
+          <h4>${esc(it.titleUz||it.titleEn)} <span class="pill${String(it.published)==="TRUE"?" live":""}">${String(it.published)==="TRUE"?"saytda":"yashirin"}</span></h4>
+          <small>${esc(cfg.sub(it))}</small></div>
+          <div class="actions" style="margin:0"><button class="abtn ghost" data-edit="${esc(it.id)}">Tahrirlash</button><button class="abtn danger" data-del="${esc(it.id)}">Oʻchirish</button></div>
+        </div>`).join(""):`<p class="muted">${esc(cfg.empty)}</p>`}
+    </div>`;
+  $a("cfSave").addEventListener("click",()=>{
+    const item={id:cur.id||"",published:$a("cf-pub").checked};
+    cfg.fields.forEach(([k])=>{ item[k]=$a("cf-"+k).value; });
+    const err=cfg.check(item); if(err){ admSay(err,true); return; }
+    admRun(async()=>{ const r=await api(cfg.save,{item}); ADM.d[cfg.key]=r[cfg.key]; ADM[cfg.editKey]=null; cfg.redraw(); },"Saqlandi. Sayt 1 daqiqada yangilanadi.");
+  });
+  if($a("cfCancel")) $a("cfCancel").addEventListener("click",()=>{ ADM[cfg.editKey]=null; cfg.redraw(); });
+  $a("admBody").querySelectorAll("[data-edit]").forEach(b=>b.addEventListener("click",()=>{
+    ADM[cfg.editKey]=ADM.d[cfg.key].find(x=>x.id===b.dataset.edit)||null; cfg.redraw(); window.scrollTo({top:0,behavior:"smooth"});
+  }));
+  $a("admBody").querySelectorAll("[data-del]").forEach(b=>b.addEventListener("click",()=>{
+    if(!confirm("Oʻchirilsinmi?")) return;
+    admRun(async()=>{ const r=await api(cfg.del,{id:b.dataset.del}); ADM.d[cfg.key]=r[cfg.key]; cfg.redraw(); },"Oʻchirildi.");
+  }));
+}
+function admEvents(){
+  admCrud({key:"events",editKey:"editEv",save:"saveEvent",del:"deleteEvent",redraw:admEvents,
+    newTitle:"Tadbir qoʻshish",editTitle:"Tadbirni tahrirlash",listTitle:"Tadbirlar roʻyxati",empty:"Hali tadbir yoʻq.",
+    sort:(a,b)=>String(a.startsAt).localeCompare(String(b.startsAt)),
+    sub:it=>(dt(it.startsAt)||"vaqt belgilanmagan")+(it.location?" — "+it.location:""),
+    check:it=>(!it.titleUz&&!it.titleEn)?"Tadbir nomini yozing.":(!it.startsAt?"Boshlanish vaqtini belgilang.":""),
+    fields:[["titleUz","Nomi (oʻzbekcha)","text"],["titleEn","Nomi (inglizcha)","text"],
+      ["startsAt","Boshlanish vaqti","datetime-local"],["endsAt","Tugash vaqti (ixtiyoriy)","datetime-local"],
+      ["location","Manzil","text",false,"Qarshi, …"],["link","Havola (ixtiyoriy)","text",false,"#/register"],
+      ["descUz","Tavsif (oʻzbekcha)","area",true],["descEn","Tavsif (inglizcha)","area",true]]});
+}
+function admNews(){
+  admCrud({key:"news",editKey:"editNews",save:"saveNews",del:"deleteNews",redraw:admNews,
+    newTitle:"Yangilik qoʻshish",editTitle:"Yangilikni tahrirlash",listTitle:"Yangiliklar roʻyxati",empty:"Hali yangilik yoʻq.",
+    sort:(a,b)=>String(b.date).localeCompare(String(a.date)),
+    sub:it=>dt(it.date),
+    check:it=>{ if(!it.titleUz&&!it.titleEn) return "Sarlavhani yozing."; if(!it.date) it.date=new Date().toISOString().slice(0,10); return ""; },
+    fields:[["date","Sana","date"],["image","Rasm havolasi (ixtiyoriy)","text",false,"https://…"],
+      ["titleUz","Sarlavha (oʻzbekcha)","text"],["titleEn","Sarlavha (inglizcha)","text"],
+      ["bodyUz","Matn (oʻzbekcha)","area",true],["bodyEn","Matn (inglizcha)","area",true]]});
+}
+
+/* ---------- asoschi ---------- */
+function resizeImage(file){
+  return new Promise((res,rej)=>{
+    const img=new Image(), url=URL.createObjectURL(file);
+    img.onload=()=>{
+      const k=Math.min(1,1200/Math.max(img.naturalWidth,img.naturalHeight));
+      const c=document.createElement("canvas"); c.width=Math.round(img.naturalWidth*k); c.height=Math.round(img.naturalHeight*k);
+      c.getContext("2d").drawImage(img,0,0,c.width,c.height); URL.revokeObjectURL(url);
+      res(c.toDataURL("image/jpeg",0.88).split(",")[1]);
+    };
+    img.onerror=()=>rej(new Error("Rasmni oʻqib boʻlmadi. JPG yoki PNG tanlang."));
+    img.src=url;
+  });
+}
+function admFounder(){
+  const s=ADM.d.settings, url=s.founderPhoto||"";
+  $a("admBody").innerHTML=`
+    <div class="card"><h3>Asoschi rasmi</h3>
+      <div class="photo-row">
+        <div class="photo-box">${url?`<img src="${esc(url)}" alt="">`:'<span class="muted">Rasm yoʻq — saytda logotip chiqadi</span>'}</div>
+        <div style="flex:1;min-width:220px">
+          <label for="fFile">Yangi rasm (JPG yoki PNG)</label>
+          <input type="file" id="fFile" accept="image/jpeg,image/png,image/webp">
+          <p class="muted" style="margin:8px 0 0">Tik (portret) rasm yaxshi chiqadi — saytda 4:5 nisbatda koʻrinadi. Rasm avtomatik kichraytiriladi.</p>
+          <div class="actions"><button class="abtn" id="fUp">Rasmni yuklash</button>${url?'<button class="abtn ghost" id="fRm">Rasmni olib tashlash</button>':""}</div>
+        </div>
+      </div>
+    </div>
+    <div class="card"><h3>Asoschi haqida matn</h3>
+      <div class="arow">
+        <div class="full-row"><label for="fUz">Oʻzbekcha</label><textarea id="fUz" style="min-height:240px">${esc(s.founderBioUz||"")}</textarea></div>
+        <div class="full-row"><label for="fEn">Inglizcha</label><textarea id="fEn" style="min-height:240px">${esc(s.founderBioEn||"")}</textarea></div>
+      </div>
+      <p class="muted" style="margin-top:8px">Xatboshilarni bitta boʻsh qator bilan ajrating. Boʻsh qoldirsangiz, saytdagi asl matn koʻrinadi.</p>
+      <div class="actions"><button class="abtn" id="fSave">Matnni saqlash</button></div>
+    </div>`;
+  $a("fUp").addEventListener("click",()=>{
+    const file=$a("fFile").files[0]; if(!file){ admSay("Avval rasmni tanlang.",true); return; }
+    admRun(async()=>{ const data=await resizeImage(file); const r=await api("uploadPhoto",{type:"image/jpeg",data}); ADM.d.settings=r.settings; admFounder(); },"Rasm saqlandi. Sayt 1 daqiqada yangilanadi.");
+  });
+  if($a("fRm")) $a("fRm").addEventListener("click",()=>{ if(!confirm("Rasm saytdan olib tashlansinmi?")) return;
+    admRun(async()=>{ const r=await api("saveSettings",{values:{founderPhoto:""}}); ADM.d.settings=r.settings; admFounder(); },"Olib tashlandi."); });
+  $a("fSave").addEventListener("click",()=>admRun(async()=>{
+    const r=await api("saveSettings",{values:{founderBioUz:$a("fUz").value,founderBioEn:$a("fEn").value}}); ADM.d.settings=r.settings;
+  },"Saqlandi. Sayt 1 daqiqada yangilanadi."));
+}
+
+/* ---------- umumiy maʼlumot ---------- */
+const SET_LABELS = {email:"Pochta",phone:"Murojaat uchun telefon",telegram:"Telegram (murojaat) havolasi",channel:"Telegram kanal havolasi",
+  instagram:"Instagram sahifa havolasi",cityEn:"Shahar (inglizcha)",cityUz:"Shahar (oʻzbekcha)",
+  heroSubEn:"Bosh sahifa matni (inglizcha)",heroSubUz:"Bosh sahifa matni (oʻzbekcha)",delegationsEn:"Delegatsiyalar (inglizcha)",delegationsUz:"Delegatsiyalar (oʻzbekcha)"};
+function admSettings(){
+  const keys=ADM.d.settingKeys.filter(k=>k.indexOf("founder")!==0), s=ADM.d.settings;
+  $a("admBody").innerHTML=`<div class="card"><h3>Saytdagi umumiy maʼlumotlar</h3>
+    <div class="arow">${keys.map(k=>{ const big=k.indexOf("heroSub")===0;
+      return `<div class="${big?"full-row":""}"><label for="s-${k}">${esc(SET_LABELS[k]||k)}</label>${big?`<textarea id="s-${k}">${esc(s[k]||"")}</textarea>`:`<input id="s-${k}" value="${esc(s[k]||"")}">`}</div>`; }).join("")}</div>
+    <p class="muted" style="margin-top:10px">Boʻsh qoldirilgan maydon oʻrniga saytdagi asl matn koʻrinadi.</p>
+    <div class="actions"><button class="abtn" id="sSave">Saqlash</button></div></div>`;
+  $a("sSave").addEventListener("click",()=>admRun(async()=>{
+    const values={}; keys.forEach(k=>{ values[k]=$a("s-"+k).value; });
+    const r=await api("saveSettings",{values}); ADM.d.settings=r.settings;
+  },"Saqlandi. Sayt 1 daqiqada yangilanadi."));
+}
+
+/* ---------- foydalanuvchilar (faqat bosh admin) ---------- */
+function admUsers(){
+  const users=ADM.d.users||[];
+  const rf=ADM.resetFor;
+  $a("admBody").innerHTML=`
+    <div class="card"><h3>Yangi admin qoʻshish</h3>
+      <p class="muted" style="margin-top:0">Yangi foydalanuvchi arizalar, tadbirlar, yangiliklar va sozlamalar bilan ishlay oladi. Foydalanuvchi qoʻshish va oʻchirish faqat sizda qoladi.</p>
+      <div class="arow">
+        <div><label for="uLogin">Login</label><input id="uLogin" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="masalan: ali_admin">
+          <p class="muted" style="margin:6px 0 0">4–32 belgi, lotin harfi bilan boshlanadi; faqat harf, raqam va _ . - belgilari.</p></div>
+        <div><label for="uPw">Parol</label><input id="uPw" type="password" autocomplete="new-password">
+          <label class="check" style="margin-top:8px"><input type="checkbox" id="uShow"><span>Parolni koʻrsatish</span></label>
+          ${pwRulesHtml("uRules")}</div>
+      </div>
+      <div class="actions"><button class="abtn" id="uAdd">Qoʻshish</button></div>
+    </div>
+    ${rf?`<div class="card" id="rCard"><h3>Parolni tiklash: ${esc(rf)}</h3>
+      <div class="arow"><div><label for="rPw">Yangi parol</label><input id="rPw" type="password" autocomplete="new-password">
+        <label class="check" style="margin-top:8px"><input type="checkbox" id="rShow"><span>Parolni koʻrsatish</span></label></div>
+        <div>${pwRulesHtml("rRules")}</div></div>
+      <div class="actions"><button class="abtn" id="rSave">Saqlash</button><button class="abtn ghost" id="rCancel">Bekor qilish</button></div></div>`:""}
+    <div class="card"><h3>Foydalanuvchilar</h3><div class="tscroll">
+      <table class="apps" style="min-width:760px"><tr><th>Login</th><th>Rol</th><th>Holat</th><th>Kim qoʻshgan</th><th>Qoʻshilgan</th><th>Oxirgi kirish</th><th></th></tr>
+      ${users.map(u=>`<tr><td><b>${esc(u.login)}</b></td><td>${u.role==="owner"?"Bosh admin":"Admin"}</td>
+        <td>${u.active?'<span class="pill live">faol</span>':'<span class="pill">oʻchirilgan</span>'}</td>
+        <td>${esc(u.createdBy)}</td><td class="nw">${esc(dt(u.createdAt))}</td><td class="nw">${esc(dt(u.lastLogin))||'<span class="muted">—</span>'}</td>
+        <td class="nw">${u.role==="owner"?'<span class="muted">—</span>':`
+          <button class="abtn ghost sm" data-act="toggle" data-u="${esc(u.login)}" data-on="${u.active?0:1}">${u.active?"Faolsizlantirish":"Faollashtirish"}</button>
+          <button class="abtn ghost sm" data-act="reset" data-u="${esc(u.login)}">Parolni tiklash</button>
+          <button class="abtn danger sm" data-act="del" data-u="${esc(u.login)}">Oʻchirish</button>`}</td></tr>`).join("")}
+      </table></div></div>`;
+  const uLogin=()=>$a("uLogin").value.trim();
+  const updU=wirePw("uPw","uRules",uLogin); $a("uLogin").addEventListener("input",updU); eyeToggle("uShow",["uPw"]);
+  $a("uAdd").addEventListener("click",()=>{
+    const login=uLogin(), pw=$a("uPw").value;
+    if(!LOGIN_RE.test(login)){ admSay("Login qoidaga mos emas: 4–32 belgi, lotin harfi bilan boshlansin; faqat harf, raqam, _ . -",true); return; }
+    if(!pwOk(pw,login)){ admSay("Parol barcha talablarga javob bermayapti.",true); return; }
+    admRun(async()=>{ const r=await api("createUser",{login,password:pw}); ADM.d.users=r.users; admUsers(); },"Foydalanuvchi qoʻshildi. Login va parolni unga xavfsiz yoʻl bilan bering.");
+  });
+  if(rf){
+    wirePw("rPw","rRules",()=>rf); eyeToggle("rShow",["rPw"]);
+    $a("rCancel").addEventListener("click",()=>{ ADM.resetFor=""; admUsers(); });
+    $a("rSave").addEventListener("click",()=>{
+      const pw=$a("rPw").value; if(!pwOk(pw,rf)){ admSay("Parol barcha talablarga javob bermayapti.",true); return; }
+      admRun(async()=>{ const r=await api("resetPassword",{login:rf,password:pw}); ADM.d.users=r.users; ADM.resetFor=""; admUsers(); },"Parol yangilandi.");
+    });
+  }
+  $a("admBody").querySelectorAll("[data-act]").forEach(b=>b.addEventListener("click",()=>{
+    const u=b.dataset.u;
+    if(b.dataset.act==="reset"){ ADM.resetFor=u; admUsers(); $a("rCard").scrollIntoView({behavior:"smooth"}); return; }
+    if(b.dataset.act==="del"){ if(!confirm(u+" butunlay oʻchirilsinmi?")) return;
+      admRun(async()=>{ const r=await api("deleteUser",{login:u}); ADM.d.users=r.users; admUsers(); },"Oʻchirildi."); return; }
+    admRun(async()=>{ const r=await api("setUserActive",{login:u,active:b.dataset.on==="1"}); ADM.d.users=r.users; admUsers(); },"Saqlandi.");
+  }));
+}
+
+/* ---------- oʻz parolini oʻzgartirish ---------- */
+function admMe(){
+  $a("admBody").innerHTML=`<div class="card" style="max-width:640px"><h3>Parolni oʻzgartirish</h3>
+    <div class="field"><label for="mOld">Joriy parol</label><input id="mOld" type="password" autocomplete="current-password"></div>
+    <div class="field" style="margin-top:12px"><label for="mNew">Yangi parol</label><input id="mNew" type="password" autocomplete="new-password"></div>
+    <div class="field" style="margin-top:12px"><label for="mNew2">Yangi parolni takrorlang</label><input id="mNew2" type="password" autocomplete="new-password"></div>
+    <label class="check" style="margin-top:10px"><input type="checkbox" id="mShow"><span>Parollarni koʻrsatish</span></label>
+    ${pwRulesHtml("mRules")}
+    <div class="actions"><button class="abtn" id="mSave">Parolni almashtirish</button></div>
+    <p class="muted" style="margin-top:12px">Parol almashganda boshqa qurilmalardagi kirishlar avtomatik yopiladi.</p></div>`;
+  wirePw("mNew","mRules",()=>ADM.user.login); eyeToggle("mShow",["mOld","mNew","mNew2"]);
+  $a("mSave").addEventListener("click",()=>{
+    const o=$a("mOld").value, n=$a("mNew").value, n2=$a("mNew2").value;
+    if(!o){ admSay("Joriy parolni kiriting.",true); return; }
+    if(!pwOk(n,ADM.user.login)){ admSay("Yangi parol barcha talablarga javob bermayapti.",true); return; }
+    if(n!==n2){ admSay("Yangi parollar bir xil emas.",true); return; }
+    if(n===o){ admSay("Yangi parol eskisidan farq qilsin.",true); return; }
+    admRun(async()=>{ const r=await api("changePassword",{oldPassword:o,newPassword:n}); admToken(r.token); admMe(); },"Parol almashtirildi.");
   });
 }
 

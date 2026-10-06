@@ -1,165 +1,81 @@
-# Model of OTS — sayt va admin panel
+# Model of OTS – QarDU — sayt va admin panel
 
-Ikki qismdan iborat:
-
-| Qism | Qayerda turadi | Kim koʻradi |
+| Qism | Qayerda | Nima |
 |---|---|---|
-| **Sayt** (`index.html`, `assets/`) | GitHub + Vercel | hamma |
-| **Admin panel** (`admin-apps-script/`) | Google Apps Script serveri | faqat siz |
+| **Sayt** (`index.html`, logotiplar) | GitHub Pages | hamma koʻradi; admin panel ham shu yerda — `#/admin` |
+| **Backend** (`admin-apps-script/Code.gs`) | Google Apps Script + Google jadval | maʼlumotlar, login/parol tekshiruvi, xatlar |
 
-Admin panelning kodi saytga **umuman yuborilmaydi**. Brauzerda "kodni koʻrish" qilgan odam faqat oddiy sayt kodini koʻradi — panel manzili ham, kodi ham, maʼlumotlar bazasi ham u yerda yoʻq. Kirish parol bilan emas, Google hisobi orqali tekshiriladi.
-
----
-
-## 1-qadam. Google jadvali va kod
-
-1. [sheets.new](https://sheets.new) — yangi jadval oching, nomini `Model of OTS` qoʻying.
-2. **Extensions → Apps Script**.
-3. Chapdagi `Code.gs` faylining ichidagi hamma narsani oʻchirib, `admin-apps-script/Code.gs` faylidagi kodni toʻliq nusxalang.
-4. Chapdagi **Files** yonidagi **+** → **HTML** → nomiga `Admin` deb yozing (kengaytmasiz). Ochilgan fayl ichidagini oʻchirib, `admin-apps-script/Admin.html` ni toʻliq nusxalang.
-5. Diskcha belgisini bosib saqlang.
-6. Yuqoridagi funksiyalar roʻyxatidan **`setup`** ni tanlab **Run** bosing → ruxsat soʻralganda hisobingizni tanlang → **Advanced → Go to … (unsafe) → Allow**. Bu bir marta qilinadi: varaqlar yaratiladi, Jadval, Drive (rasm uchun) va Pochta ruxsatlari beriladi.
-
-Jadval egasi panelga avtomatik kiradi. Boshqa odamni ham qoʻshmoqchi boʻlsangiz, `Code.gs` dagi `ADMIN_EMAILS` roʻyxatiga uning pochtasini yozing.
-
-`Events`, `News`, `Settings`, `Applications` varaqlari birinchi ishlatilganda oʻzi yaratiladi.
+Admin panelga kirish: saytning eng pastki oʻng burchagidagi kichik qulf belgisi yoki toʻgʻridan-toʻgʻri `…/mirmuhsin/#/admin`.
 
 ---
 
-## 2-qadam. Ikkita deployment
+## Oʻrnatish (bir marta, ~10 daqiqa)
 
-Bitta kod, ikkita turli ruxsat. **Ikkalasi ham kerak.**
+1. **Jadval.** [sheets.new](https://sheets.new) → nomi `Model of OTS` → **Extensions → Apps Script**.
+2. **Kod.** Chapdagi `Code.gs` ichini toʻliq oʻchirib, shu papkadagi `admin-apps-script/Code.gs` ni qoʻying. Diskcha belgisi bilan saqlang. (Boshqa fayl kerak emas.)
+3. **Ruxsatlar.** Yuqoridagi funksiyalar roʻyxatidan **`setup`** ni tanlab **Run** → hisobingizni tanlang → **Advanced → Go to … (unsafe) → Allow**.
+4. **Deploy.** **Deploy → New deployment** → tishli gʻildirak → **Web app**:
+   - Execute as: **Me**
+   - Who has access: **Anyone**
+   - **Deploy** → chiqqan **Web app URL** (`…/exec`) dan nusxa oling.
+5. **Saytga ulash.** `index.html` dagi qatorga shu manzilni qoʻying:
+   ```js
+   const APPS_SCRIPT_URL = "https://script.google.com/macros/s/.../exec";
+   ```
+   va GitHub'ga yuklang.
 
-### A — sayt uchun (ochiq)
-
-1. **Deploy → New deployment** → tishli gʻildirak → **Web app**.
-2. Description: `site api`, Execute as: **Me**, Who has access: **Anyone**.
-3. **Deploy** → **Authorize access** → hisobingizni tanlang → "Google hasn't verified this app" chiqsa: **Advanced → Go to … (unsafe) → Allow**.
-4. Chiqqan **Web app URL** dan nusxa oling va `index.html` ichiga qoʻying:
-
-```js
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/.../exec";
-```
-
-Bu manzil orqali sayt faqat **eʼlon qilingan** yangiliklar va tadbirlarni oʻqiydi hamda arizalarni yuboradi. Bu manzildan turib hech narsani tahrirlab boʻlmaydi.
-
-### B — admin panel uchun (yopiq)
-
-1. Yana **Deploy → New deployment** → **Web app**.
-2. Description: `admin`, Execute as: **Me**, Who has access: **Only myself**.
-   *(Sekretariatda boshqa odam ham panelga kirishi kerak boʻlsa: **Anyone with Google account** ni tanlang va uning pochtasini `ADMIN_EMAILS` roʻyxatiga qoʻshing. Roʻyxatda yoʻq odam kira olmaydi.)*
-3. **Deploy** → chiqqan URL — sizning admin panelingiz. Uni brauzerda xatcho'pga saqlang.
-
-> Bu manzilni saytga, Telegramga, hech qayerga joylamang. Kodni keyin oʻzgartirsangiz: **Deploy → Manage deployments → ✏️ → Version: New version → Deploy**, aks holda eski kod ishlashda davom etadi.
+**Kodni keyin oʻzgartirsangiz:** Deploy → Manage deployments → ✏️ → Version: **New version** → Deploy. Manzil oʻzgarmaydi.
 
 ---
 
-## 3-qadam. Saytni joylash
+## Admin panel
 
-1. GitHub'da repozitoriy oching, masalan `modelofots`.
-2. **Faqat** `index.html`, `assets/` va shu `README.md` ni yuklang.
-   **`admin-apps-script/` papkasini yuklamang** — u Apps Script uchun, GitHub'da turishi shart emas.
-3. [vercel.com](https://vercel.com) → **Add New → Project** → repozitoriyni tanlang → Framework: **Other** → **Deploy**.
-4. Domen ulash: Vercel'da loyiha → **Settings → Domains** → domen nomini yozing → koʻrsatilgan `A` yoki `CNAME` yozuvini domen registratori DNS panelida qoʻshing.
+Login va parol bilan kiriladi. Kirish 6 soat amal qiladi (brauzer yopilsa — qayta kirish kerak).
 
-Matnni keyin GitHub'dagi `index.html` ni tahrirlab oʻzgartirasiz — Vercel saytni oʻzi yangilaydi. Yangilik va tadbirlar uchun esa kodga tegish shart emas: ular admin paneldan boshqariladi.
+| Boʻlim | Nima qiladi |
+|---|---|
+| **Arizalar** | Toʻliq jadval: F.I.Sh., yoʻnalish, bosqich, kurs, telefon, pochta, Telegram, Instagram, davlat, jamoa, motivatsiya. Qidiruv, filtr, statistika, Excel'ga yuklab olish. Rolni shu yerda biriktirasiz, holatni `Accepted`/`Rejected` qilib xat yuborasiz. Telegram/Instagram username bosilsa — profil ochiladi (obunani tekshirish uchun). |
+| **Tadbirlar** | Sana, joy, tavsif — saytda ortga sanash bilan chiqadi. |
+| **Yangiliklar** | Ikki tilda eʼlonlar. |
+| **Asoschi** | Rasm yuklash (avtomatik kichraytiriladi, Drive'ga saqlanadi) va matnni ikki tilda tahrirlash. |
+| **Umumiy maʼlumot** | Pochta, telefon, Telegram kanal, Instagram, shahar, bosh sahifa matni. |
+| **Foydalanuvchilar** | *Faqat bosh admin koʻradi.* Yangi admin qoʻshish, faolsizlantirish, parolini tiklash, oʻchirish. |
+| **Parolim** | Har bir admin oʻz parolini almashtiradi. |
 
----
+O'zgarish saytda 1 daqiqagacha kechikishi mumkin.
 
-## 4-qadam. Admin paneldan foydalanish
+### Login va parol talablari
 
-Panel manzilini ochasiz, Google hisobingiz bilan kirasiz. Toʻrtta boʻlim:
+- **Login:** 4–32 belgi, lotin harfi bilan boshlanadi, faqat harf, raqam, `_ . -`.
+- **Parol:** kamida 8 belgi; kamida 1 ta katta harf, 1 ta kichik harf, 1 ta raqam, 1 ta maxsus belgi; boʻsh joy yoʻq; ichida login boʻlmasin.
 
-**Tadbirlar** — nom (oʻzbekcha va inglizcha), boshlanish vaqti, tugash vaqti, manzil, havola, tavsif. Saqlaganingizdan keyin:
-- tadbir saytdagi *Tadbirlar* sahifasida chiqadi, ostida ortga sanash ishlaydi;
-- eng yaqin tadbir bosh sahifada katta raqamlar bilan koʻrinadi;
-- vaqti kelganda "Hozir davom etmoqda", oʻtib ketganda "Yakunlandi" deb yozilib, "Oʻtgan tadbirlar" ga tushadi.
+### Rollar
 
-**Yangiliklar** — sana, sarlavha va matn (ikki tilda), ixtiyoriy rasm havolasi. Soʻnggi ikkitasi bosh sahifada ham chiqadi.
-
-**Umumiy maʼlumot** — pochta, telefon, Telegram (murojaat), Telegram kanal, shahar nomi, bosh sahifadagi katta matn. Bu yerda oʻzgartirilgani saytdagi asl matnni almashtiradi; boʻsh qoldirsangiz asl matn qoladi.
-
-**Arizalar** — barcha arizalar roʻyxati. `Status` ni `Accepted` yoki `Rejected` ga oʻzgartirasiz, soʻng "Qabul qilinganlarga xat yuborish" tugmasini bosasiz. Xat yuborilgan arizaga ikkinchi marta yuborilmaydi. "Jadvalni ochish" tugmasi Google jadvalini ochadi — u yerdan **File → Download → Microsoft Excel (.xlsx)**.
-
-Har bir yozuvda **"Saytda koʻrinsin"** belgisi bor. Uni oʻchirib qoʻysangiz, yozuv saqlanadi, lekin saytda chiqmaydi — oldindan tayyorlab qoʻyish uchun qulay.
-
-O'zgarish saytda 1 daqiqagacha kechikishi mumkin (tezlik uchun javob 60 soniya keshlanadi).
+- **Bosh admin** (`MirmuhsinXON_0908`) — hamma narsa + foydalanuvchilarni boshqarish. Uni oʻchirib yoki faolsizlantirib boʻlmaydi.
+- **Admin** — arizalar, tadbirlar, yangiliklar, asoschi, sozlamalar. Foydalanuvchi qoʻsha olmaydi.
 
 ---
 
 ## Xavfsizlik
 
-Nima qilingan:
-
-- **Panel kodi maxfiy.** Panel Google serverida ishlaydi; saytga na kodi, na manzili chiqadi.
-- **Parol yoʻq, Google autentifikatsiyasi bor.** Parolni oʻgʻirlab boʻlmaydi, chunki u umuman mavjud emas. Kirish faqat `ADMIN_EMAILS` roʻyxatidagi hisob bilan.
-- **Ikki qavatli tekshiruv.** Deployment darajasida ("Only myself") va kod darajasida (`requireAdmin_()` har bir amalda pochtani qayta tekshiradi).
-- **Ochiq manzil faqat oʻqiydi.** Sayt ishlatadigan manzil orqali yangilik qoʻshib, oʻchirib yoki arizalarni koʻrib boʻlmaydi — u faqat eʼlon qilingan kontentni beradi.
-- **Ariza shakli cheklangan.** Faqat maʼlum maydonlar qabul qilinadi, uzunligi cheklanadi, pochta tekshiriladi; boshqa maʼlumot yozib boʻlmaydi.
-- **Kiritilgan matn xavfsiz chiqariladi.** Sayt ham, panel ham matnni HTML sifatida bajarmaydi, shuning uchun tashqaridan kod qoʻshib boʻlmaydi.
-
-Nima qilishingiz kerak:
-
-1. Admin pochtangizda **ikki bosqichli tasdiqlash** (2FA) yoqilgan boʻlsin. Butun himoya shu hisobga tayanadi.
-2. Admin panel manzilini hech qayerda eʼlon qilmang.
-3. `ADMIN_EMAILS` da faqat kerakli odamlar tursin; jamoadan chiqqan odamni roʻyxatdan darhol oʻchiring.
-4. Google jadvalini **Share** orqali begonalarga ochmang — arizalar oʻsha yerda.
-5. Deployment B ni hech qachon "Anyone" ga oʻzgartirmang.
+- **Parollar ochiq saqlanmaydi.** Jadvalning `Users` varagʻida faqat tuzlangan xesh turadi (SHA-256, 1000 marta). Parolni hech kim — jadvalni ochgan odam ham — oʻqiy olmaydi.
+- **Hamma tekshiruv serverda.** Sayt kodi ochiq boʻlsa ham, login/parolsiz hech narsa qilib boʻlmaydi: har bir amalda sessiya va rol Apps Script'da qayta tekshiriladi.
+- **Bloklash.** 5 marta notoʻgʻri parol → o'sha login 15 daqiqaga bloklanadi.
+- **Sessiya bekor qilinadi**, agar foydalanuvchi oʻchirilsa, faolsizlantirilsa yoki paroli almashsa.
+- **Parolni unutsangiz:** jadvaldagi `Users` varagʻidan bosh admin qatorini oʻchiring — keyingi soʻrovda u boshlangʻich parol bilan qayta tiklanadi. Shuning uchun Google jadvalni hech kimga **Share** qilmang.
+- Google hisobingizda **ikki bosqichli tasdiqlash** (2FA) yoqilgan boʻlsin — butun maʼlumot shu hisobda.
 
 ---
 
 ## Galereyaga surat qoʻshish
 
-1. Suratlarni `assets/gallery/` papkasiga yuklang (`1.jpg`, `2.jpg` …), har biri 300 KB dan oshmasin.
-2. `index.html` dagi `gallery:` boʻlimida `<div class="empty">…</div>` qatorini almashtiring:
+Suratlarni `assets/gallery/` papkasiga yuklang (`1.jpg`, `2.jpg` …, har biri 300 KB gacha) va `index.html` dagi `gallery:` boʻlimida `<div class="empty">…</div>` ni almashtiring:
 
 ```html
 <div class="grid g3">
   <img src="assets/gallery/1.jpg" alt="">
   <img src="assets/gallery/2.jpg" alt="">
-  <img src="assets/gallery/3.jpg" alt="">
 </div>
 ```
 
----
-
-## Fayllar
-
-| Fayl | Nima uchun |
-|---|---|
-| `index.html` | Butun sayt: dizayn, matnlar, sahifalar, ariza shakli, ortga sanash |
-| `assets/logo.webp`, `logo-mark.webp`, `favicon.png` | Logotip |
-| `admin-apps-script/Code.gs` | Backend: kontent, arizalar, xat yuborish, ruxsat tekshiruvi |
-| `admin-apps-script/Admin.html` | Admin panel koʻrinishi |
-
-Saytdagi doimiy matnlar (davlatlar, lavozimlar, sessiya tartibi, qoidalar) `index.html` pastidagi `<script>` ichida: `STATES`, `POSITIONS`, `STEPS`, `SECRETARIAT` va `C = { en: …, uz: … }`. Qoʻshtirnoq ichidagi matnni oʻzgartiring, qoʻshtirnoq va vergullarga tegmang.
-
----
-
-## Nizom versiyasiga yangilash (2026-oktabr)
-
-Sayt "Model of OTS – QarDU" Nizomiga moslandi: 5 ta aʼzo davlat, 9 bosqich, baholash mezonlari (100 ball), ishtirok qoidalari va QarDU talabalari uchun yangi ariza shakli.
-
-**Admin panelni yangilash (majburiy):**
-
-1. Apps Script'da `Code.gs` va `Admin.html` ichidagini shu papkadagi yangi fayllar bilan almashtiring, saqlang.
-2. Muharrirda istalgan funksiyani (masalan `adminLoad`) bir marta **Run** qiling — Google Drive'ga ruxsat soʻraydi (asoschi rasmi Drive'ga saqlanadi). **Allow** bosing.
-3. **Deploy → Manage deployments** — *ikkala* deployment uchun ham: ✏️ → Version: **New version** → **Deploy**. Manzillar oʻzgarmaydi.
-
-**Yangi imkoniyatlar:**
-
-- **Asoschi** boʻlimi — rasm yuklash (JPG/PNG/WEBP, 4 MB gacha; Drive'dagi "Model of OTS — sayt rasmlari" papkasiga tushadi) va asoschi haqidagi matnni ikki tilda tahrirlash. Xatboshilar bitta boʻsh qator bilan ajratiladi.
-- **Arizalar** — toʻliq jadval: F.I.Sh., fakultet, bosqich, kurs, telefon, pochta, davlat, rol, jamoa, motivatsiya, til, holat. Qidiruv, holat/davlat/bosqich boʻyicha filtr, statistika va **Excel'ga yuklab olish** (CSV, Excel toʻgʻri ochadi).
-- Google jadvalidagi `Applications` varagʻiga `Faculty`, `Level`, `Course`, `Team` ustunlari avtomatik qoʻshiladi; eski arizalar oʻz joyida qoladi.
-
-**Ijtimoiy tarmoqlar va rollar (5-oktabr qoʻshimchasi):**
-
-- Saytning har bir sahifasida, menyu ostida Telegram va Instagram tugmalari turadi; ular bosh sahifada, aloqa sahifasida, ariza shaklida va pastki qismda ham bor.
-- Ariza shaklida Telegram va Instagram username majburiy. Obuna boʻlmaganlarning arizasi koʻrib chiqilmasligi shaklda va qoidalarda yozilgan.
-- Ishtirokchi rol tanlamaydi. Admin paneldagi **Arizalar** jadvalida "Biriktirilgan rol" ustunidan rolni oʻzingiz tanlaysiz; qabul xatida shu rol yoziladi.
-- Jadvaldagi Telegram/Instagram username bosilsa, oʻsha odamning profili ochiladi — obunani tekshirish uchun qulay.
-- "Umumiy maʼlumot"da **Telegram kanal havolasi** maydonida eski kanal (`t.me/Mirmuhsinxonn`) yozilgan boʻlsa, uni `https://t.me/Model_of_OTS` ga almashtiring yoki boʻsh qoldiring.
-
-**Muhim tartib:** avval Apps Script'ni (Code.gs, Admin.html) yangilab deploy qiling, keyin `index.html` ni GitHub'ga joylang. Aks holda eski backend Telegram/Instagram username'larini saqlamaydi.
-
-**Eslatma:** "Umumiy maʼlumot" boʻlimida *Delegatsiyalar* yoki *Bosh sahifa matni* maydoniga avval eski matn ("8 davlat, 64 oʻrin" kabi) yozilgan boʻlsa, uni oʻchiring yoki yangilang — aks holda u saytdagi yangi matnni almashtiradi.
+Saytdagi doimiy matnlar (davlatlar, bosqichlar, baholash, qoidalar) `index.html` ichidagi `STATES`, `STEPS`, `CRITERIA`, `C = { en: …, uz: … }` da.

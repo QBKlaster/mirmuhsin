@@ -17,14 +17,10 @@ Admin panelning kodi saytga **umuman yuborilmaydi**. Brauzerda "kodni koʻrish" 
 2. **Extensions → Apps Script**.
 3. Chapdagi `Code.gs` faylining ichidagi hamma narsani oʻchirib, `admin-apps-script/Code.gs` faylidagi kodni toʻliq nusxalang.
 4. Chapdagi **Files** yonidagi **+** → **HTML** → nomiga `Admin` deb yozing (kengaytmasiz). Ochilgan fayl ichidagini oʻchirib, `admin-apps-script/Admin.html` ni toʻliq nusxalang.
-5. `Code.gs` boshidagi sozlamalarni toʻldiring:
+5. Diskcha belgisini bosib saqlang.
+6. Yuqoridagi funksiyalar roʻyxatidan **`setup`** ni tanlab **Run** bosing → ruxsat soʻralganda hisobingizni tanlang → **Advanced → Go to … (unsafe) → Allow**. Bu bir marta qilinadi: varaqlar yaratiladi, Jadval, Drive (rasm uchun) va Pochta ruxsatlari beriladi.
 
-```js
-var ADMIN_EMAILS = ['sizning.pochtangiz@gmail.com'];   // panelga kiradiganlar
-var REPLY_EMAIL  = 'info@modelofots.uz';               // arizachilarga javob pochtasi
-```
-
-6. Diskcha belgisini bosib saqlang.
+Jadval egasi panelga avtomatik kiradi. Boshqa odamni ham qoʻshmoqchi boʻlsangiz, `Code.gs` dagi `ADMIN_EMAILS` roʻyxatiga uning pochtasini yozing.
 
 `Events`, `News`, `Settings`, `Applications` varaqlari birinchi ishlatilganda oʻzi yaratiladi.
 

@@ -1356,6 +1356,7 @@ async function api(action, payload){
   try{ d = await r.json(); }catch(e){ throw new Error("Serverdan notoʻgʻri javob keldi. Apps Script deploy qilinganini tekshiring."); }
   if(!d || !d.ok){
     if(d && d.auth){ admToken(""); ADM.user=null; ADM.d=null; setTimeout(admRender,0); }
+    if(d && d.error==="missing fields") throw new Error("Server eski Code.gs bilan ishlayapti. Apps Script'da yangi Code.gs ni qoʻyib, Deploy → Manage deployments → ✏️ → Version: New version → Deploy qiling.");
     throw new Error((d && d.error) || "Xatolik yuz berdi.");
   }
   return d;

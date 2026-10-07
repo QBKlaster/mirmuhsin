@@ -685,6 +685,7 @@ en:{
        subP:"Subscribing to both our Telegram channel and our Instagram page is mandatory. Applications from participants who are not subscribed to both will be rejected automatically. Subscribe first, then enter your usernames below — the Organising Committee checks them.",
        seatsLeft:"seats left",full:"full",allFull:"All seats for every state are taken. Registration is closed.",
        fullErr:"Sorry, all seats for this state have just been taken. Please choose another state.",
+       seatGone:"Seats for the state you selected have just run out. Please choose another state.",
        mH:"Important!",mP:"Subscribing to our Instagram page and Telegram channel is mandatory.",
        mP2:"If you are not subscribed to both, your application will be rejected automatically.",
        mOk:"I am subscribed — send",mBack:"Back",
@@ -795,6 +796,7 @@ uz:{
        subP:"Telegram kanalimiz va Instagram sahifamizga aʼzo boʻlish shart. Ikkalasiga ham aʼzo boʻlmagan ishtirokchilarning arizasi avtomatik rad etiladi. Avval aʼzo boʻling, soʻng quyida username'laringizni kiriting — tashkiliy qoʻmita ularni tekshiradi.",
        seatsLeft:"ta oʻrin qoldi",full:"oʻrinlar toʻldi",allFull:"Barcha davlatlar boʻyicha oʻrinlar toʻldi. Roʻyxatdan oʻtish yopildi.",
        fullErr:"Kechirasiz, bu davlat uchun oʻrinlar hozirgina toʻldi. Iltimos, boshqa davlatni tanlang.",
+       seatGone:"Siz tanlagan davlatda oʻrinlar hozirgina toʻldi. Iltimos, boshqa davlatni tanlang.",
        mH:"Diqqat!",mP:"Instagram sahifamiz va Telegram kanalimizga aʼzo boʻlishingiz shart.",
        mP2:"Agar ikkalasiga ham aʼzo boʻlmasangiz, arizangiz avtomatik rad etiladi.",
        mOk:"Aʼzo boʻldim — yuborish",mBack:"Ortga",
@@ -1309,7 +1311,7 @@ function route(){
   if(view==="admin") admRender();
   document.querySelectorAll("#nav a").forEach(a=>a.classList.toggle("on", a.dataset.k===view));
   document.getElementById("nav").classList.remove("open");
-  if(view==="register") wireForm();
+  if(view==="register"){ wireForm(); startSeatPolling(); } else stopSeatPolling();
   tickAll();
   window.scrollTo({top:0,behavior:"instant"});
 }
@@ -1333,12 +1335,25 @@ function refreshCountrySelect(){
   sel.innerHTML=`<option value="">${esc(t().reg.f.choose)}</option>`+countryOptions();
   const opt=[...sel.options].find(o=>o.value===keep && !o.disabled); sel.value=opt?keep:"";
   const btn=document.getElementById("regBtn"), box=document.getElementById("regMsg");
-  if(allFull()){ btn.disabled=true; box.textContent=t().reg.f.allFull; box.className="msg on err"; }
+  if(btn.textContent===t().reg.f.sending) return;
+  if(allFull()){ btn.disabled=true; box.textContent=t().reg.f.allFull; box.className="msg on err"; box.dataset.auto="1"; return; }
+  btn.disabled=false;
+  if(keep && !opt){ box.textContent=t().reg.f.seatGone; box.className="msg on err"; box.dataset.auto="1"; }
+  else if(box.dataset.auto){ box.className="msg"; box.textContent=""; delete box.dataset.auto; }
 }
 async function reloadSeats(){
-  try{ const r=await fetch(APPS_SCRIPT_URL+"?action=content&t="+Date.now(),{cache:"no-store"}); const d=await r.json(); if(d&&d.seats) SITE.seats=d.seats; }catch(e){}
+  if(!APPS_SCRIPT_URL) return;
+  try{ const r=await fetch(APPS_SCRIPT_URL+"?action=seats&t="+Date.now(),{cache:"no-store"}); const d=await r.json(); if(d&&d.seats) SITE.seats=d.seats; }catch(e){}
   refreshCountrySelect();
 }
+/* Ariza sahifasi ochiq turganda oʻrinlar har 10 soniyada yangilanadi (real vaqt) */
+let seatTimer=null;
+function startSeatPolling(){
+  stopSeatPolling();
+  seatTimer=setInterval(()=>{ if(!document.hidden) reloadSeats(); }, 10000);
+}
+function stopSeatPolling(){ if(seatTimer){ clearInterval(seatTimer); seatTimer=null; } }
+document.addEventListener("visibilitychange",()=>{ if(!document.hidden && currentView()==="register") reloadSeats(); });
 function subscribeModal(){
   return new Promise(resolve=>{
     const f=t().reg.f, w=document.createElement("div");
@@ -1513,6 +1528,22 @@ function admRender(){
   ({apps:admApps,events:admEvents,news:admNews,founder:admFounder,settings:admSettings,users:admUsers,me:admMe})[ADM.tab]();
 }
 
+/* Arizalar boʻlimi ochiq turganda har 30 soniyada jim yangilanadi */
+setInterval(async()=>{
+  if(document.hidden || currentView()!=="admin" || !ADM.token || !ADM.d || ADM.tab!=="apps") return;
+  const ae=document.activeElement;
+  if(ae && ae.closest && ae.closest("#admBody") && /INPUT|SELECT|TEXTAREA/.test(ae.tagName) && ae.id!=="afQ") return;
+  if(document.querySelector("#admBody details[open]")) return;
+  try{
+    const d=await api("load");
+    const y=window.scrollY, q=$a("afQ"), hadFocus=document.activeElement===q, pos=q?q.selectionStart:0;
+    if(JSON.stringify(d.applications)!==JSON.stringify(ADM.d.applications)){
+      ADM.d=d; ADM.user=d.user; admApps(); window.scrollTo(0,y);
+      if(hadFocus){ const n=$a("afQ"); n.focus(); n.setSelectionRange(pos,pos); }
+    }
+  }catch(e){}
+}, 30000);
+
 async function admLoad(){
   try{
     const d = await api("load");
@@ -1582,6 +1613,7 @@ function userLink(base,u){
 function admApps(){
   const every=ADM.d.applications, all=every.filter(a=>!a.dupOf), n=fn=>all.filter(fn).length, f=ADM.f;
   const dupN=every.length-all.length, cap=parseInt(ADM.d.settings.seatsPerState,10)||8;
+  const seatTaken=k=>all.filter(a=>a.country===k&&a.status!=="Rejected").length;
   const stats=[["Jami (takrorsiz)",all.length],["Yangi",n(a=>a.status==="New")],["Qabul qilingan",n(a=>a.status==="Accepted")],["Rad etilgan",n(a=>a.status==="Rejected")],["Takroriy",dupN]]
     .concat(Object.keys(STATE_UZ).map(k=>[STATE_UZ[k]+" (oʻrin)",n(a=>a.country===k&&a.status!=="Rejected")+" / "+cap]));
   const countries=[...new Set(all.map(a=>a.country).filter(Boolean))].sort();
@@ -1619,13 +1651,27 @@ function admApps(){
         <td class="nw"><a href="tel:${esc(String(a.phone).replace(/\s/g,""))}">${esc(a.phone)}</a></td>
         <td><a href="mailto:${esc(a.email)}">${esc(a.email)}</a></td>
         <td class="nw">${userLink("https://t.me/",a.telegram)}</td><td class="nw">${userLink("https://www.instagram.com/",a.instagram)}</td>
-        <td>${esc(uzState(a.country))}</td>
+        <td><select data-country="${a.row}">${Object.keys(STATE_UZ).map(k=>`<option value="${esc(k)}"${a.country===k?" selected":""}>${esc(STATE_UZ[k])} (${seatTaken(k)}/${cap})</option>`).join("")}${STATE_UZ[a.country]?"":`<option selected>${esc(a.country)}</option>`}</select></td>
         <td><select data-role="${a.row}">${Object.keys(ROLE_UZ).map(k=>`<option value="${esc(k)}"${a.position===k?" selected":""}>${esc(ROLE_UZ[k])}</option>`).join("")}${ROLE_UZ[a.position]?"":`<option selected>${esc(a.position)}</option>`}</select></td>
         <td>${a.team?`<div class="pre">${esc(a.team)}</div>`:""}</td>
         <td>${a.motivation?`<details><summary>Oʻqish</summary><div class="pre">${esc(a.motivation)}</div></details>`:'<span class="muted">—</span>'}</td>
         <td>${esc(String(a.lang).toUpperCase())}</td>
         <td><select data-status="${a.row}" class="st-${esc(a.status)}">${["New","Accepted","Rejected"].map(s=>`<option${a.status===s?" selected":""}>${s}</option>`).join("")}</select></td>
         <td class="nw">${esc(dt(a.mailed))}</td></tr>`).join("")}</table>`;
+    $a("aList").querySelectorAll("select[data-country]").forEach(s=>s.addEventListener("change",async()=>{
+      const row=Number(s.dataset.country), country=s.value;
+      admBusy(true);
+      try{
+        let r;
+        try{ r=await api("setCountry",{row,country}); }
+        catch(e){
+          if(/toʻlgan/.test(e.message) && confirm(e.message+"\n\nBaribir shu davlatga oʻtkazilsinmi?")) r=await api("setCountry",{row,country,force:true});
+          else throw e;
+        }
+        ADM.d.applications=r.applications; admApps(); admSay("Davlat oʻzgartirildi.");
+      }catch(e){ admSay(e.message,true); admApps(); }
+      finally{ admBusy(false); }
+    }));
     $a("aList").querySelectorAll("select[data-role]").forEach(s=>s.addEventListener("change",()=>admRun(async()=>{
       const r=await api("setRole",{row:Number(s.dataset.role),role:s.value}); ADM.d.applications=r.applications; draw();
     },"Rol biriktirildi.")));

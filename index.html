@@ -109,6 +109,16 @@ nav.main a.on{color:var(--gold-lt);border-bottom-color:var(--gold)}
 footer .sbtn{display:inline-flex;margin:4px 0 8px;font-size:.84rem}
 @media (max-width:560px){.socialbar .lead{width:100%;text-align:center}.sbtn{font-size:.8rem;padding:7px 12px}}
 
+.smodal{position:fixed;inset:0;z-index:300;background:rgba(6,32,42,.62);display:grid;place-items:center;padding:16px}
+.smodal-box{background:#fff;max-width:480px;width:100%;padding:28px;border-top:4px solid var(--gold);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.smodal-box h3{margin:0 0 10px;font-size:1.4rem}
+.smodal-box p{margin:0 0 10px}
+.smodal-box .warn{color:#A33827;font-weight:600}
+.smodal-box .row{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 6px}
+.smodal-box .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.btn.ghost-dark{background:#fff;color:var(--teal);border-color:var(--line)}
+select option:disabled{color:#9AA}
+
 /* ---------- hero ---------- */
 .hero{
   position:relative;color:#fff;overflow:hidden;
@@ -347,6 +357,10 @@ table.apps{width:100%;min-width:1750px;border-collapse:collapse;font-family:var(
 table.apps th,table.apps td{text-align:left;padding:8px 9px;border-bottom:1px solid var(--line);vertical-align:top;font-size:.84rem}
 table.apps th{color:var(--txt-soft);font-weight:600;font-size:.76rem;white-space:nowrap;background:#fff}
 table.apps tr:hover td{background:#F6F9F9}
+table.apps tr.dup td{background:#FBF4E4;color:var(--txt-soft)}
+.pill.warn{background:#F7E4E0;color:#A33827}
+.dupbar{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:12px;padding:10px 14px;background:#FBF4E4;border-left:3px solid var(--gold);font-family:var(--sans);font-size:.88rem}
+.dupbar .check{margin:0}
 table.apps td.nw{white-space:nowrap}
 table.apps select{padding:5px 6px;font-size:.8rem;min-width:120px}
 table.apps details summary{cursor:pointer;color:var(--teal)}
@@ -668,13 +682,19 @@ en:{
        tg:"Telegram username",ig:"Instagram username",userPh:"@username",
        tgBad:"Enter a valid Telegram username, e.g. @first_last",igBad:"Enter a valid Instagram username, e.g. @first.last",
        subH:"Required: subscribe to our pages",
-       subP:"Applications from participants who are not subscribed to our Telegram channel and Instagram page will not be reviewed. Subscribe first, then enter your usernames below — the Organising Committee checks them.",
+       subP:"Subscribing to both our Telegram channel and our Instagram page is mandatory. Applications from participants who are not subscribed to both will be rejected automatically. Subscribe first, then enter your usernames below — the Organising Committee checks them.",
+       seatsLeft:"seats left",full:"full",allFull:"All seats for every state are taken. Registration is closed.",
+       fullErr:"Sorry, all seats for this state have just been taken. Please choose another state.",
+       mH:"Important!",mP:"Subscribing to our Instagram page and Telegram channel is mandatory.",
+       mP2:"If you are not subscribed to both, your application will be rejected automatically.",
+       mOk:"I am subscribed — send",mBack:"Back",
        team:"Your team",teamPh:"If you are applying together as a delegation, list your teammates’ full names.",
        mot:"Motivation letter",opt:"(optional)",
        motPh:"Why do you want to take part, and what will you bring to the delegation?",
        agree:"I have read the rules for participants and agree to follow them.",
        choose:"Choose…",submit:"Send application",sending:"Sending…",yearSuffix:" year"},
     ok:"Application received. The Organising Committee will contact you by email.",
+    repeat:"Application received. We already had an application from you — the Organising Committee will keep the most complete one.",
     err:"The application could not be sent. Check your connection and try again, or write to us at ",
     unset:"The form is not connected to a database yet. Follow the README to add your Apps Script link.",
     after:"Applications are reviewed by the Organising Committee only."},
@@ -772,13 +792,19 @@ uz:{
        tg:"Telegram username",ig:"Instagram username",userPh:"@username",
        tgBad:"Telegram username notoʻgʻri. Masalan: @ism_familiya",igBad:"Instagram username notoʻgʻri. Masalan: @ism.familiya",
        subH:"Majburiy shart: sahifalarimizga obuna boʻling",
-       subP:"Telegram kanalimiz va Instagram sahifamizga obuna boʻlmagan ishtirokchilarning arizasi koʻrib chiqilmaydi. Avval obuna boʻling, soʻng quyida username'laringizni kiriting — tashkiliy qoʻmita ularni tekshiradi.",
+       subP:"Telegram kanalimiz va Instagram sahifamizga aʼzo boʻlish shart. Ikkalasiga ham aʼzo boʻlmagan ishtirokchilarning arizasi avtomatik rad etiladi. Avval aʼzo boʻling, soʻng quyida username'laringizni kiriting — tashkiliy qoʻmita ularni tekshiradi.",
+       seatsLeft:"ta oʻrin qoldi",full:"oʻrinlar toʻldi",allFull:"Barcha davlatlar boʻyicha oʻrinlar toʻldi. Roʻyxatdan oʻtish yopildi.",
+       fullErr:"Kechirasiz, bu davlat uchun oʻrinlar hozirgina toʻldi. Iltimos, boshqa davlatni tanlang.",
+       mH:"Diqqat!",mP:"Instagram sahifamiz va Telegram kanalimizga aʼzo boʻlishingiz shart.",
+       mP2:"Agar ikkalasiga ham aʼzo boʻlmasangiz, arizangiz avtomatik rad etiladi.",
+       mOk:"Aʼzo boʻldim — yuborish",mBack:"Ortga",
        team:"Jamoangiz",teamPh:"Agar delegatsiya boʻlib birga topshirayotgan boʻlsangiz, jamoadoshlaringizning ism-sharifini yozing.",
        mot:"Motivatsion xat",opt:"(ixtiyoriy)",
        motPh:"Nega musobaqada qatnashmoqchisiz va delegatsiyaga nima olib kelasiz?",
        agree:"Ishtirok qoidalari bilan tanishdim va ularga rioya qilaman.",
        choose:"Tanlang…",submit:"Arizani yuborish",sending:"Yuborilmoqda…",yearSuffix:"-kurs"},
     ok:"Ariza qabul qilindi. Tashkiliy qoʻmita siz bilan elektron pochta orqali bogʻlanadi.",
+    repeat:"Ariza qabul qilindi. Sizdan avval ham ariza kelgan — tashkiliy qoʻmita eng toʻliq arizangizni koʻrib chiqadi.",
     err:"Arizani yuborib boʻlmadi. Internetni tekshirib qayta urinib koʻring yoki bizga yozing: ",
     unset:"Shakl hali maʼlumotlar bazasiga ulanmagan. README boʻyicha Apps Script havolasini qoʻshing.",
     after:"Arizalarni faqat tashkiliy qoʻmita koʻrib chiqadi."},
@@ -797,7 +823,7 @@ uz:{
 /* ============================================================
    4) JONLI KONTENT (admin paneldan keladi)
    ============================================================ */
-let SITE = { settings:{}, events:[], news:[] };
+let SITE = { settings:{}, events:[], news:[], seats:null };
 /* Asoschi rasmi — admin paneldagi "Asoschi" boʻlimidan yuklanadi. Boʻsh boʻlsa logotip chiqadi. */
 let FOUNDER_PHOTO = "";
 let contentLoaded = false;
@@ -810,6 +836,7 @@ async function loadContent(){
     if(!d || !d.ok) return;
     SITE.settings = d.settings || {};
     SITE.events = (d.events||[]).slice().sort((a,b)=>String(a.startsAt).localeCompare(String(b.startsAt)));
+    SITE.seats = d.seats || null;
     SITE.news = (d.news||[]).slice().sort((a,b)=>String(b.date).localeCompare(String(a.date)));
     applySettings();
     contentLoaded = true;
@@ -1184,7 +1211,7 @@ const views = {
         <div class="field full"><label for="f-country">${esc(t().reg.f.country)}</label>
           <select id="f-country" name="country" required>
             <option value="">${esc(t().reg.f.choose)}</option>
-            ${STATES.map(s=>`<option value="${esc(s.en)}">${esc(sName(s))}</option>`).join("")}
+            ${countryOptions()}
           </select>
           <span class="hint">${esc(t().reg.f.countryNote)}</span></div>
         <div class="subbox">
@@ -1288,6 +1315,47 @@ function route(){
 }
 
 /* ---------- registration form ---------- */
+function seatInfo(en){ const s=SITE.seats&&SITE.seats[en]; return s?{left:Math.max(0,s.cap-s.taken),cap:s.cap}:null; }
+function countryOptions(){
+  const f=t().reg.f;
+  return STATES.map(s=>{
+    const i=seatInfo(s.en);
+    if(!i) return `<option value="${esc(s.en)}">${esc(sName(s))}</option>`;
+    return i.left>0
+      ? `<option value="${esc(s.en)}">${esc(sName(s))} — ${i.left} ${esc(f.seatsLeft)}</option>`
+      : `<option value="${esc(s.en)}" disabled>${esc(sName(s))} — ${esc(f.full)}</option>`;
+  }).join("");
+}
+function allFull(){ return !!SITE.seats && STATES.every(s=>{ const i=seatInfo(s.en); return i && i.left<=0; }); }
+function refreshCountrySelect(){
+  const sel=document.getElementById("f-country"); if(!sel) return;
+  const keep=sel.value;
+  sel.innerHTML=`<option value="">${esc(t().reg.f.choose)}</option>`+countryOptions();
+  const opt=[...sel.options].find(o=>o.value===keep && !o.disabled); sel.value=opt?keep:"";
+  const btn=document.getElementById("regBtn"), box=document.getElementById("regMsg");
+  if(allFull()){ btn.disabled=true; box.textContent=t().reg.f.allFull; box.className="msg on err"; }
+}
+async function reloadSeats(){
+  try{ const r=await fetch(APPS_SCRIPT_URL+"?action=content&t="+Date.now(),{cache:"no-store"}); const d=await r.json(); if(d&&d.seats) SITE.seats=d.seats; }catch(e){}
+  refreshCountrySelect();
+}
+function subscribeModal(){
+  return new Promise(resolve=>{
+    const f=t().reg.f, w=document.createElement("div");
+    w.className="smodal";
+    w.innerHTML=`<div class="smodal-box" role="dialog" aria-modal="true">
+      <h3>${esc(f.mH)}</h3><p>${esc(f.mP)}</p><p class="warn">${esc(f.mP2)}</p>
+      <div class="row">${socialBtns(false)}</div>
+      <div class="actions"><button class="btn solid-dark" data-ok>${esc(f.mOk)}</button><button class="btn ghost-dark" data-back>${esc(f.mBack)}</button></div></div>`;
+    const done=v=>{ w.remove(); document.removeEventListener("keydown",esc_); resolve(v); };
+    const esc_=e=>{ if(e.key==="Escape") done(false); };
+    w.addEventListener("click",e=>{ if(e.target===w) done(false); });
+    w.querySelector("[data-ok]").addEventListener("click",()=>done(true));
+    w.querySelector("[data-back]").addEventListener("click",()=>done(false));
+    document.addEventListener("keydown",esc_);
+    document.body.appendChild(w); w.querySelector("[data-ok]").focus();
+  });
+}
 function cleanUser(v){
   return String(v||"").trim().split("?")[0].replace(/\/+$/,"")
     .replace(/^(https?:\/\/)?(www\.)?(t\.me|telegram\.me|instagram\.com)\//i,"").replace(/^@+/,"");
@@ -1296,6 +1364,8 @@ function wireForm(){
   ["f-tg","f-ig"].forEach(id=>document.getElementById(id).addEventListener("input",e=>e.target.setCustomValidity("")));
   const btn=document.getElementById("regBtn"), box=document.getElementById("regMsg");
   const show=(text,isErr)=>{box.innerHTML=text;box.className="msg on"+(isErr?" err":"");};
+  refreshCountrySelect();
+  if(APPS_SCRIPT_URL) reloadSeats();
   btn.addEventListener("click", async ()=>{
     const form=document.getElementById("regForm");
     const fields=[...form.querySelectorAll("input:not([type=checkbox]),select,textarea")];
@@ -1324,15 +1394,22 @@ function wireForm(){
     data.lang=lang;
 
     if(!APPS_SCRIPT_URL){ show(esc(t().reg.unset), true); return; }
+    if(!(await subscribeModal())) return;
 
     btn.disabled=true; const old=btn.textContent; btn.textContent=t().reg.f.sending;
     try{
-      await fetch(APPS_SCRIPT_URL,{method:"POST",body:JSON.stringify(data)});
-      show(esc(t().reg.ok), false);
+      const r=await fetch(APPS_SCRIPT_URL,{method:"POST",body:JSON.stringify(data)});
+      let d=null; try{ d=await r.json(); }catch(e){}
+      if(d && d.ok===false){
+        if(d.error==="full"){ if(d.seats) SITE.seats=d.seats; refreshCountrySelect(); show(esc(t().reg.f.fullErr), true); return; }
+        throw new Error(d.error||"error");
+      }
+      show(esc(d && d.repeat ? t().reg.repeat : t().reg.ok), false);
       fields.forEach(f=>{ if(f.name) f.value=""; }); agree.checked=false;
+      reloadSeats();
     }catch(e){
       show(esc(t().reg.err)+`<a href="mailto:${CONTACT.email}">${CONTACT.email}</a>`, true);
-    }finally{ btn.disabled=false; btn.textContent=old; }
+    }finally{ btn.disabled=allFull(); btn.textContent=old; }
   });
 }
 
@@ -1342,7 +1419,7 @@ function wireForm(){
    Xavfsizlik serverda (Apps Script) tekshiriladi: bu kodni koʻrgan
    odam login va parolsiz hech narsa qila olmaydi.
    ============================================================ */
-const ADM = { token:"", user:null, d:null, tab:"apps", f:{q:"",st:"",c:"",lv:""}, editEv:null, editNews:null, resetFor:"" };
+const ADM = { token:"", user:null, d:null, tab:"apps", f:{q:"",st:"",c:"",lv:"",dups:false}, editEv:null, editNews:null, resetFor:"" };
 try{ ADM.token = sessionStorage.getItem("mots-adm") || ""; }catch(e){}
 function admToken(t){ ADM.token=t||""; try{ t ? sessionStorage.setItem("mots-adm",t) : sessionStorage.removeItem("mots-adm"); }catch(e){} }
 const $a = id => document.getElementById(id);
@@ -1487,6 +1564,7 @@ function admWireLogin(){
 function admFiltered(){
   const f=ADM.f, q=f.q.trim().toLowerCase();
   return ADM.d.applications.filter(a=>{
+    if(a.dupOf && !f.dups) return false;
     if(f.st && a.status!==f.st) return false;
     if(f.c && a.country!==f.c) return false;
     if(f.lv && a.level!==f.lv) return false;
@@ -1502,9 +1580,10 @@ function userLink(base,u){
   return u ? `<a href="${esc(base+u)}" target="_blank" rel="noopener">@${esc(u)}</a>` : '<span class="muted">—</span>';
 }
 function admApps(){
-  const all=ADM.d.applications, n=fn=>all.filter(fn).length, f=ADM.f;
-  const stats=[["Jami",all.length],["Yangi",n(a=>a.status==="New")],["Qabul qilingan",n(a=>a.status==="Accepted")],["Rad etilgan",n(a=>a.status==="Rejected")]]
-    .concat(Object.keys(STATE_UZ).map(k=>[STATE_UZ[k],n(a=>a.country===k)]));
+  const every=ADM.d.applications, all=every.filter(a=>!a.dupOf), n=fn=>all.filter(fn).length, f=ADM.f;
+  const dupN=every.length-all.length, cap=parseInt(ADM.d.settings.seatsPerState,10)||8;
+  const stats=[["Jami (takrorsiz)",all.length],["Yangi",n(a=>a.status==="New")],["Qabul qilingan",n(a=>a.status==="Accepted")],["Rad etilgan",n(a=>a.status==="Rejected")],["Takroriy",dupN]]
+    .concat(Object.keys(STATE_UZ).map(k=>[STATE_UZ[k]+" (oʻrin)",n(a=>a.country===k&&a.status!=="Rejected")+" / "+cap]));
   const countries=[...new Set(all.map(a=>a.country).filter(Boolean))].sort();
   $a("admBody").innerHTML=`
     <div class="astats">${stats.map(s=>`<div><b>${s[1]}</b><span>${esc(s[0])}</span></div>`).join("")}</div>
@@ -1515,6 +1594,10 @@ function admApps(){
         <select id="afC"><option value="">Barcha davlatlar</option>${countries.map(c=>`<option value="${esc(c)}"${f.c===c?" selected":""}>${esc(uzState(c))}</option>`).join("")}</select>
         <select id="afLv"><option value="">Barcha bosqichlar</option>${["Bakalavriat","Magistratura"].map(s=>`<option${f.lv===s?" selected":""}>${s}</option>`).join("")}</select>
       </div>
+      ${dupN?`<div class="dupbar">
+        <span><b>${dupN} ta takroriy ariza</b> topildi (80% va undan koʻp oʻxshash). Har guruhdan eng batafsili qoldirildi, qolganlari yashirilgan.</span>
+        <label class="check"><input type="checkbox" id="afDup"${f.dups?" checked":""}><span>Takroriylarni koʻrsatish</span></label>
+        <button class="abtn danger sm" id="aDupDel">Takroriylarni butunlay oʻchirish</button></div>`:""}
       <div class="actions" style="margin:12px 0 14px">
         <button class="abtn gold" id="aAcc">Qabul qilinganlarga xat yuborish</button>
         <button class="abtn ghost" id="aRej">Rad etilganlarga xat yuborish</button>
@@ -1530,8 +1613,8 @@ function admApps(){
     $a("aList").innerHTML=`<p class="muted" style="margin:0 0 8px">${list.length} ta ariza koʻrsatilmoqda</p>
       <table class="apps"><tr><th>№</th><th>Sana</th><th>F.I.Sh.</th><th>Yoʻnalish</th><th>Bosqich</th><th>Kurs</th><th>Telefon</th><th>Pochta</th>
       <th>Telegram</th><th>Instagram</th><th>Davlat</th><th>Biriktirilgan rol</th><th>Jamoa</th><th>Motivatsiya</th><th>Til</th><th>Holat</th><th>Xat yuborilgan</th></tr>
-      ${list.map((a,i)=>`<tr>
-        <td>${i+1}</td><td class="nw">${esc(dt(a.when))}</td><td><b>${esc(a.name)}</b></td>
+      ${list.map((a,i)=>`<tr class="${a.dupOf?"dup":""}">
+        <td>${i+1}</td><td class="nw">${esc(dt(a.when))}</td><td><b>${esc(a.name)}</b>${a.dupCount?`<br><span class="pill">+${a.dupCount} takror</span>`:""}${a.dupOf?`<br><span class="pill warn">takroriy · ${a.dupScore}%</span>`:""}</td>
         <td>${esc(a.faculty||a.institution)}</td><td>${esc(a.level)}</td><td class="nw">${esc(a.course?a.course+"-kurs":"")}</td>
         <td class="nw"><a href="tel:${esc(String(a.phone).replace(/\s/g,""))}">${esc(a.phone)}</a></td>
         <td><a href="mailto:${esc(a.email)}">${esc(a.email)}</a></td>
@@ -1553,6 +1636,11 @@ function admApps(){
   draw();
   $a("afQ").addEventListener("input",e=>{ f.q=e.target.value; draw(); });
   [["afSt","st"],["afC","c"],["afLv","lv"]].forEach(([id,k])=>$a(id).addEventListener("change",e=>{ f[k]=e.target.value; draw(); }));
+  if($a("afDup")) $a("afDup").addEventListener("change",e=>{ f.dups=e.target.checked; draw(); });
+  if($a("aDupDel")) $a("aDupDel").addEventListener("click",()=>{
+    if(!confirm(dupN+" ta takroriy ariza Google jadvaldan butunlay oʻchirilsinmi? Har guruhdan eng batafsili qoladi.")) return;
+    admRun(async()=>{ const r=await api("deleteDuplicates"); ADM.d.applications=r.applications; admApps(); admSay(r.deleted+" ta takroriy ariza oʻchirildi."); });
+  });
   const send=(kind,text)=>{ if(!confirm(text)) return; admRun(async()=>{
     const r=await api("sendEmails",{kind}); ADM.d.applications=r.applications; admApps(); admSay(r.sent+" ta xat yuborildi.");
   }); };
@@ -1676,7 +1764,8 @@ function admFounder(){
 /* ---------- umumiy maʼlumot ---------- */
 const SET_LABELS = {email:"Pochta",phone:"Murojaat uchun telefon",telegram:"Telegram (murojaat) havolasi",channel:"Telegram kanal havolasi",
   instagram:"Instagram sahifa havolasi",cityEn:"Shahar (inglizcha)",cityUz:"Shahar (oʻzbekcha)",
-  heroSubEn:"Bosh sahifa matni (inglizcha)",heroSubUz:"Bosh sahifa matni (oʻzbekcha)",delegationsEn:"Delegatsiyalar (inglizcha)",delegationsUz:"Delegatsiyalar (oʻzbekcha)"};
+  heroSubEn:"Bosh sahifa matni (inglizcha)",heroSubUz:"Bosh sahifa matni (oʻzbekcha)",delegationsEn:"Delegatsiyalar (inglizcha)",delegationsUz:"Delegatsiyalar (oʻzbekcha)",
+  seatsPerState:"Har bir davlat uchun oʻrinlar soni (boʻsh = 8)"};
 function admSettings(){
   const keys=ADM.d.settingKeys.filter(k=>k.indexOf("founder")!==0), s=ADM.d.settings;
   $a("admBody").innerHTML=`<div class="card"><h3>Saytdagi umumiy maʼlumotlar</h3>
